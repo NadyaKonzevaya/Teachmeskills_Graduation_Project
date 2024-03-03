@@ -1,0 +1,1 @@
+export { default as MainSharedLayout } from './MainSharedLayout';

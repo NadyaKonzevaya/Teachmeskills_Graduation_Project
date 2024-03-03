@@ -1,3 +1,3 @@
 export interface IRegistrationFormProps {
-  type: string;
+  type: 'Sign In' | 'Sign Up';
 }

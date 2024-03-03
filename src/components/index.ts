@@ -1,2 +1,9 @@
 export { RegistrationSharedLayout } from './RegistrationSharedLayout';
 export { RegistrationForm } from './RegistrationForm';
+export { ResetPasswordForm } from './ResetPasswordForm';
+export { MainSharedLayout } from './MainSharedLayout';
+export { Navigation } from './Navigation';
+export { Header } from './Header';
+export { UserMenu } from './UserMenu';
+export { MainMovieList } from './MainMovies';
+export { Settings } from './Settings';
