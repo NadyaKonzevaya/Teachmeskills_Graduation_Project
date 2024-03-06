@@ -17,7 +17,12 @@ export const BackgroundMain = styled.div`
 export const MainContainerWrap = styled.div`
     grid-area: main;
     display: grid;
-    grid-template: 1fr / minmax(auto, 306px) 1fr;
+    /* grid-template: 1fr / minmax(auto, 306px) 1fr; */
+    grid-template-rows: 1fr auto; 
+    grid-template-columns: minmax(auto, 306px) minmax(266px, auto) 1fr minmax(auto, 305px);
+    /* padding-left: 62px; */
+    padding-right: 62px;
+    padding-bottom: 64px;
 `;
 
 export const Aside = styled.aside`
@@ -66,9 +71,11 @@ export const SettingsElement = styled(RiSettings5Fill)`
 `;
 
 export const CopyRightMain = styled(CopyRight)`
-grid-row: 3/4;
+grid-row: 2/3;
 margin: 0;
+margin-left: 62px;
     text-align: left;
+    align-self: self-end;
     justify-items: end;
     color: ${colors.systemColors.secondary};
 `;

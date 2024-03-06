@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
+
 import colors from '../../constants/colorConstants';
 
 export const MovieWrap = styled.li`
@@ -6,26 +8,31 @@ export const MovieWrap = styled.li`
     position: relative;
 `;
 
-export const ImgWrap = styled.div`
+export const ImgWrap = styled(NavLink)`
+/* display: block;
     width: 266px;
     height: 357px;
     overflow: hidden;
     margin-bottom: 24px;
-    border-radius: 20px;
+    border-radius: 20px; */
 `;
 
 export const MovieImg = styled.img`
-    max-width: 100%;
+    /* max-width: 266px; */
+    width: 100%;
+     border-radius: 20px; 
     margin: 0;
 `;
 
 export const Title = styled.h2`
     font-size: 16px;
     font-weight: 700;
+    margin: 0;
 `;
 
 export const GenreList = styled.ul`
 padding: 0;
+margin: 0;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -48,12 +55,12 @@ export const Rating = styled.span`
     justify-content: center;
     align-items: center;
     background-color: ${colors.tertiaryColors.green};
-    ${({ vote_average }) => {
-    if (vote_average >= 7) {
+    ${({ rating }) => {
+    if (rating >= 7) {
       return `
         background-color: ${colors.tertiaryColors.green};
       `;
-    } if (vote_average <= 7 && vote_average >= 5) {
+    } if (rating <= 7 && rating >= 5) {
       return `
         background-color: ${colors.tertiaryColors.yellow};
       `;

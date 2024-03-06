@@ -9,13 +9,13 @@ export const HeaderWrapper = styled.div`
     padding-left: 62px;
     padding-right: 62px;
     display: grid;
-    grid-template: 1fr / minmax(auto, 306px) 1fr minmax(auto, 305px);
+    grid-template: 1fr / minmax(auto, 246px) 1fr minmax(auto, 305px);
     grid-auto-flow: column;
     align-items: center;
 `;
 
 export const LogoBlack = styled(Logo)`
-    margin-right: 146px;    
+    /* margin-right: 146px;     */
 `;
 
 export const SearchBarWrap = styled.div`

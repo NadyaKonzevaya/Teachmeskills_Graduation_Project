@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose } from 'react-icons/io';
 import IBackDropProps from '../Backdrop/Backdrop.types';
 import {
   Container, Form, Title, Label, LabelTitle, Wrap, RadioInput, RadioLabelLeft,
@@ -14,16 +14,18 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
   // console.log("useState", sortIsChecked);
 
   const setCheckedInput = (e) => {
-    // console.log(e.target.value);
-
     setSortIsChecked(e.target.value);
   };
+  const handleClose = () => {
+    handleIsOpen(false);
+  };
+
   return (
     <Container>
       <Form>
         <TitleWrap>
           <Title>Filters</Title>
-          <CrossButton type='button'><IoMdClose /></CrossButton>
+          <CrossButton type="button" onClick={handleClose}><IoMdClose /></CrossButton>
         </TitleWrap>
         <Wrap>
           <LabelTitle>Sort by</LabelTitle>

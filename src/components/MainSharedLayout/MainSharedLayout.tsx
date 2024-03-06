@@ -1,11 +1,20 @@
 import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 import {
   Aside, BackgroundMain, BookmarkElement, CopyRightMain, HomeElement, MainContainerWrap,
   NavItem, NavMenu, NavText, SettingsElement, TrendsElement,
 } from './MainSharedLayout.styled';
 import { Header } from '../Header';
+import { useAppDispatch } from '../../redux/hooks';
+import { fetchMovies } from '../../redux/movies/operations';
 
 export default function MainSharedLayout() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
   return (
     <BackgroundMain>
       <Header />
@@ -29,8 +38,8 @@ export default function MainSharedLayout() {
               <NavText>Settings</NavText>
             </NavItem>
           </NavMenu>
-          <CopyRightMain>&#169; All Rights Reserved</CopyRightMain>
         </Aside>
+        <CopyRightMain>&#169; All Rights Reserved</CopyRightMain>
         <Outlet />
       </MainContainerWrap>
     </BackgroundMain>

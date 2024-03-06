@@ -1,53 +1,53 @@
-import { useEffect } from 'react';
-import { LuDot } from 'react-icons/lu';
-import { MainWrapper } from './MainMovieList.styled';
+import { useState } from 'react';
+import { ShowMoreButton, MoviesWrapper, MainWrapper } from './MainMovieList.styled';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchMovies } from '../../redux/movies/operations';
-import { getMoviesSelector } from '../../redux/selectors';
-import {
-  MovieWrap, ImgWrap, MovieImg, Title, GenreList, GenteItem, Rating,
-} from '../Movie/Movie.styled';
-import { IMAGE_BASE_URL, genres } from '../../utils/constants';
+import { fetchMoreMovies } from '../../redux/movies/operations';
+import { getIsLoadingSelector, getMoviesSelector } from '../../redux/selectors';
+import { genres } from '../../utils/constants';
+import { Loading } from '../Loading';
+import { Movie } from '../Movie';
 
 export default function MainMovieList() {
+  const [page, setPage] = useState(3);
   const dispatch = useAppDispatch();
   const movies = useAppSelector(getMoviesSelector);
+  const isLoading = useAppSelector(getIsLoadingSelector);
 
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, [dispatch]);
+  const handleFetchMoreMovies = () => {
+    dispatch(fetchMoreMovies({ page })).then(setPage(page + 1));
+  };
 
   return (
     <MainWrapper>
-      {movies.length > 0 && (
-        movies.map(({
-          id, poster_path, title, genre_ids, vote_average,
-        }) => {
-          const genreNames = genre_ids.reduce((acc, genreId) => {
-            if (genres[genreId]) {
-              acc.push(genres[genreId]);
-            }
-            return acc;
-          }, []);
-          return (
-            <MovieWrap key={id}>
-              <ImgWrap>
-                <MovieImg src={`${IMAGE_BASE_URL}${poster_path}`} alt={title} />
-              </ImgWrap>
-              <Title>{title}</Title>
-              <GenreList>
-                {genreNames.map((genre) => (
-                  <GenteItem key={genre}>
-                    {genre}
-                    <LuDot />
-                  </GenteItem>
-                ))}
-              </GenreList>
-              <Rating vote_average={vote_average}>{Math.round(vote_average)}</Rating>
-            </MovieWrap>
-          );
-        })
-      )}
+      <MoviesWrapper>
+        {movies.length > 0 && (
+          movies.map(({
+            id, poster_path, title, genre_ids, vote_average,
+          }) => {
+            const genreNames = genre_ids.reduce((acc, genreId) => {
+              if (genres[genreId]) {
+                acc.push(genres[genreId]);
+              }
+              return acc;
+            }, []);
+            return (
+              <Movie
+                key={id}
+                genreNames={genreNames}
+                id={id}
+                poster_path={poster_path}
+                title={title}
+                vote_average={vote_average}
+              />
+            );
+          })
+        )}
+      </MoviesWrapper>
+      <ShowMoreButton type="button" onClick={handleFetchMoreMovies}>
+        <span>Show more</span>
+        { isLoading && <Loading />}
+        {/* <Loading /> */}
+      </ShowMoreButton>
     </MainWrapper>
   );
 }

@@ -1,23 +1,27 @@
-import { useAppSelector } from '../../redux/hooks';
-import { getMoviesSelector } from '../../redux/selectors';
-import { MovieWrap } from './Movie.styled';
+import { LuDot } from 'react-icons/lu';
+import {
+  GenreList, GenteItem, ImgWrap, MovieImg, MovieWrap, Rating, Title,
+} from './Movie.styled';
+import { IMAGE_BASE_URL } from '../../utils/constants';
 
-export default function Movie() {
- 
-
+export default function Movie({
+  genreNames, id, poster_path, title, vote_average,
+}) {
   return (
-    movies.length > 0 && (
-      movies.map(({
-        id, poster_path, title, genre_ids, vote_average,
-      }) => (
-        <MovieWrap key={id}>
-          <div>
-            <img src={poster_path} alt={title} />
-          </div>
-          <h2>{title}</h2>
-          <p>{genre_ids.map((genre) => <p>{ genre}</p>) }</p>
-          <span>{vote_average}</span>
-        </MovieWrap>
-      )))
+    <MovieWrap key={id}>
+      <ImgWrap to={`/movies/${id}`}>
+        <MovieImg src={`${IMAGE_BASE_URL}${poster_path}`} alt={title} />
+      </ImgWrap>
+      <Title>{title}</Title>
+      <GenreList>
+        {genreNames.map((genre) => (
+          <GenteItem key={genre}>
+            {genre}
+            <LuDot />
+          </GenteItem>
+        ))}
+      </GenreList>
+      <Rating rating={vote_average}>{Math.round(vote_average * 10) / 10}</Rating>
+    </MovieWrap>
   );
 }

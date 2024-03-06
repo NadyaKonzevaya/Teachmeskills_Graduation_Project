@@ -21,4 +21,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'linebreak-style': 0,
   },
+  settings: {
+    'import/core-modules': ['@emotion/react', '@emotion/styled'],
+  },
 };

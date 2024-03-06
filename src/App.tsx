@@ -5,6 +5,7 @@ import {
   Settings,
 } from './components';
 import { EmptyFavoritePage } from './pages';
+import { MovieDetails } from './components/MovieDetails';
 // import MainPage from './pages/MainPage';
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Route path="confirmReset" element={<ResetPasswordForm type="reset2" />} />
         <Route path="setNewPassword" element={<ResetPasswordForm type="newPassword" />} />
       </Route>
-      <Route path="/main" element={<MainSharedLayout />}>
+      <Route path="/movies" element={<MainSharedLayout />}>
         <Route index element={<MainMovieList />} />
+        <Route path=":movieId" element={<MovieDetails />} />
         <Route path="settings" element={<Settings />} />
         <Route path="favorite" element={<EmptyFavoritePage />} />
       </Route>
