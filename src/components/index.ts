@@ -7,3 +7,4 @@ export { Header } from './Header';
 export { UserMenu } from './UserMenu';
 export { MainMovieList } from './MainMovies';
 export { Settings } from './Settings';
+export { FilteredMovieList } from './FilteredMovieList';

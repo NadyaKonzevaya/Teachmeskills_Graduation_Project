@@ -3,6 +3,7 @@ import './App.css';
 import {
   RegistrationSharedLayout, RegistrationForm, ResetPasswordForm, MainSharedLayout, MainMovieList,
   Settings,
+  FilteredMovieList,
 } from './components';
 import { EmptyFavoritePage } from './pages';
 import { MovieDetails } from './components/MovieDetails';
@@ -20,6 +21,7 @@ function App() {
       </Route>
       <Route path="/movies" element={<MainSharedLayout />}>
         <Route index element={<MainMovieList />} />
+        <Route index path="sorting" element={<FilteredMovieList />} />
         <Route path=":movieId" element={<MovieDetails />} />
         <Route path="settings" element={<Settings />} />
         <Route path="favorite" element={<EmptyFavoritePage />} />

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchCastMovieDetails, fetchMoreMovies, fetchMovieDetails, fetchMovies,
+  fetchMoviesByQuery, fetchMoviesByParams,
   fetchRecommendsMovieDetails,
 } from './operations';
 
@@ -107,6 +108,12 @@ export const moviesSlice = createSlice({
     })
     .addCase(fetchRecommendsMovieDetails.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
       state.currentMovie = { ...state.currentMovie, recommendations: action.payload };
+    })
+    .addCase(fetchMoviesByParams.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
+      state.items = action.payload;
+    })
+    .addCase(fetchMoviesByQuery.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
+      state.items = action.payload;
     }),
   // .addCase(fetchCardInfo.pending, (state) => {
   //   state.CardIsLoading = true;

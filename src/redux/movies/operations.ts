@@ -1,13 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import qs from 'querystring';
 // import { IAllCard, IMyCard, ISearchProps } from '../../components/Card/Card.types';
 import { API_KEY, BASE_URL } from '../../utils/constants';
 import { IActor, IMovie } from './MoviesSlice';
 // import api from '../api';
 
+export interface IParams {
+  sortingBy?: string,
+  minVotes?: number,
+  page?: number,
+  query?: string,
+  title?: string,
+  genres?: string,
+  year?: string,
+  // year: number,
+  // title: string,
+  // genres: string[],
+  // country: string[],
+}
+
 export const fetchMovies = createAsyncThunk<IMovie[], void, { rejectValue: string }>('movies/fetchMovies', async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`${BASE_URL}/3/trending/movie/day?api_key=${API_KEY}`);
+    const response = await axios.get(`${BASE_URL}/3/trending/movie/week?api_key=${API_KEY}`);
     return response.data.results;
   } catch (error) {
     return rejectWithValue(error.message);
@@ -31,6 +46,7 @@ export const fetchMovieDetails = createAsyncThunk<IMovie[], number, { rejectValu
     return rejectWithValue(error.message);
   }
 });
+
 export const fetchCastMovieDetails = createAsyncThunk<IActor[], number, { rejectValue: string }>('cards/fetchCastMovieDetails', async (movieId, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${BASE_URL}/3/movie/${movieId}/credits?api_key=${API_KEY}`);
@@ -40,6 +56,7 @@ export const fetchCastMovieDetails = createAsyncThunk<IActor[], number, { reject
     return rejectWithValue(error.message);
   }
 });
+
 export const fetchRecommendsMovieDetails = createAsyncThunk<IMovie[], number, { rejectValue: string }>('cards/fetchRecommendationsMovieDetails', async (movieId, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${BASE_URL}/3/movie/${movieId}/recommendations?api_key=${API_KEY}`);
@@ -50,6 +67,22 @@ export const fetchRecommendsMovieDetails = createAsyncThunk<IMovie[], number, { 
   }
 });
 
+export const fetchMoviesByParams = createAsyncThunk<IMovie[], IParams, { rejectValue: string }>('movies/fetchMoviesByParams', async ({ sortingBy = '', minVotes = '', page = 1, genres = '', year = '' }, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/3/discover/movie?api_key=${API_KEY}&page=${page}&vote_count.gte=${minVotes}&sort_by=${sortingBy}&with_genres=${genres}&year=${year}`);
+    return response.data.results;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+export const fetchMoviesByQuery = createAsyncThunk<IMovie[], string, { rejectValue: string }>('movies/fetchMoviesByQuery', async (title, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/3/search/movie?api_key=${API_KEY}&query=${title}`);
+    return response.data.results;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
 // export const fetchMyCards = createAsyncThunk<ISearchProps[], { limit: number, offset: number }, { rejectValue: string }>('cards/fetchMyCards', async ({ limit, offset }, { rejectWithValue }) => {
 //   try {
 //     const response = await api.get(`/blog/posts/?limit=${limit}&offset=${offset}`);
