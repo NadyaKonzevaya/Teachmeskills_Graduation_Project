@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { BsFilterRight } from 'react-icons/bs';
 
 import { Logo } from '../RegistrationSharedLayout/RegistrationSharedLayout.styled';
-import colors from "../../constants/colorConstants";
+import colors from '../../constants/colorConstants';
 
 export const HeaderWrapper = styled.div`
     grid-area: header;

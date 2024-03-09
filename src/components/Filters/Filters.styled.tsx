@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import colors from '../../constants/colorConstants';
 import { Link } from 'react-router-dom';
+import colors from '../../constants/colorConstants';
 
 export const Container = styled.div`
     position: fixed;
@@ -23,7 +23,7 @@ export const TitleWrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-      margin-bottom: 30px;
+    margin-bottom: 30px;
 `;
 
 export const Title = styled.h1`
@@ -132,14 +132,6 @@ export const FromToWrap = styled.div`
     justify-content: space-between;
    `;
 
-export const Select = styled.select`
-    border: 2px solid ${colors.contextualColors.light};
-    border-radius: 10px;
-    height: 45px;
-     padding-left: 20px;
-    padding-right: 20px;
-   `;
-
 export const FormButton = styled.button`
      flex-basis: auto((100% - 40px) / 2);
     padding: 15px 60px;
@@ -153,4 +145,4 @@ export const FormButton = styled.button`
 
 export const StyledLink = styled(Link)`
      color: ${colors.contextualColors.white};
-`
+`;

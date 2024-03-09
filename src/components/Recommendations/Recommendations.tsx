@@ -12,13 +12,14 @@ import {
 import { genres } from '../../utils/constants';
 import { Movie } from '../Movie';
 import { Title } from '../MovieDetails/MovieDetails.styled';
+import TEXTNODES from '../../constants/textConstants';
 
 export default function Recommendations() {
   const recommendations = useAppSelector(getRecommendationsSelector);
   return (
     <Wrap>
       <TitleWrap>
-        <Title>Recommendations</Title>
+        <Title>{TEXTNODES.RECOMMENDATIONS}</Title>
         <BtnWrap>
           <ButtonPrev className="swiper-button-prev"><FaArrowLeft /></ButtonPrev>
           <ButtonNext className="swiper-button-next"><FaArrowRight /></ButtonNext>

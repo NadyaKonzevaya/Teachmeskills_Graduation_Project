@@ -11,8 +11,9 @@ import {
 } from './MovieDetails.styled';
 import { fetchCastMovieDetails, fetchMovieDetails, fetchRecommendsMovieDetails } from '../../redux/movies/operations';
 import { GenreList, GenteItem } from '../Movie/Movie.styled';
-import formateDate from '../../utils/formateDate';
+import { formateDate } from '../../utils/formateDataFromBackEnd';
 import { Recommendations } from '../Recommendations';
+import TEXTNODES from '../../constants/textConstants';
 
 export default function MovieDetails() {
   const dispatch = useAppDispatch();
@@ -59,66 +60,66 @@ export default function MovieDetails() {
     movie && movie.actors && movie.recommendations && (
       <>
         {/* <MovieWrap> */}
-          <LeftSide>
-            <ImageWrap>
-              <Image src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
-            </ImageWrap>
-            <ReactionWrap>
-              <ReactionBtn>
-                <BookmarkElement />
-              </ReactionBtn>
-              <ReactionBtn>
-                <ShareElement />
-              </ReactionBtn>
-            </ReactionWrap>
-          </LeftSide>
-          <RightSide>
-            <GenreList>
+        <LeftSide>
+          <ImageWrap>
+            <Image src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+          </ImageWrap>
+          <ReactionWrap>
+            <ReactionBtn>
+              <BookmarkElement />
+            </ReactionBtn>
+            <ReactionBtn>
+              <ShareElement />
+            </ReactionBtn>
+          </ReactionWrap>
+        </LeftSide>
+        <RightSide>
+          <GenreList>
+            {' '}
+            {movie.genres.map((genre) => (
+              <GenteItem key={genre.name}>
+                {genre.name}
+                <LuDot />
+              </GenteItem>
+            ))}
+          </GenreList>
+          <Title>{movie.title}</Title>
+          <RatingWrap>
+            <Rating rating={movie.vote_average}>{rating}</Rating>
+            <ImdbRating>
+              IMDb
               {' '}
-              {movie.genres.map((genre) => (
-                <GenteItem key={genre.name}>
-                  {genre.name}
-                  <LuDot />
-                </GenteItem>
-              ))}
-            </GenreList>
-            <Title>{movie.title}</Title>
-            <RatingWrap>
-              <Rating rating={movie.vote_average}>{rating}</Rating>
-              <ImdbRating>
-                IMDb
-                {' '}
-                {rating}
-              </ImdbRating>
-              <ImdbRating>
-                {movie.runtime}
-                {' '}
-                min
-              </ImdbRating>
-            </RatingWrap>
-            <Text>{movie.overview}</Text>
-            <PropertyWrap>
-              <PropertyName>Year</PropertyName>
-              <Value>{movie.release_date?.slice(0, 4)}</Value>
-              <PropertyName>Released</PropertyName>
-              <Value>{formateDate(movie.release_date)}</Value>
-              <PropertyName>BoxOffice</PropertyName>
-              <Value>
-                $
-                {formatedBudget}
-              </Value>
-              <PropertyName>Country</PropertyName>
-              <Value>{countries}</Value>
-              <PropertyName>Production</PropertyName>
-              <Value>{productions}</Value>
-              <PropertyName>Actors</PropertyName>
-              <Value>{mainActors}</Value>
-              {/* <PropertyName>
+              {rating}
+            </ImdbRating>
+            <ImdbRating>
+              {movie.runtime}
+              {' '}
+              min
+            </ImdbRating>
+          </RatingWrap>
+          <Text>{movie.overview}</Text>
+          <PropertyWrap>
+            <PropertyName>{TEXTNODES.YEAR}</PropertyName>
+            <Value>{movie.release_date?.slice(0, 4)}</Value>
+            <PropertyName>{TEXTNODES.RELEASED}</PropertyName>
+            <Value>{formateDate(movie.release_date)}</Value>
+            <PropertyName>{TEXTNODES.BOX_OFFICE}</PropertyName>
+            <Value>
+              $
+              {formatedBudget}
+            </Value>
+            <PropertyName>{TEXTNODES.COUNTRY}</PropertyName>
+            <Value>{countries}</Value>
+            <PropertyName>{TEXTNODES.PRODUCTION}</PropertyName>
+            <Value>{productions}</Value>
+            <PropertyName>{TEXTNODES.ACTORS}</PropertyName>
+            <Value>{mainActors}</Value>
+            {/* <PropertyName>
           Director:
           <Value />
         </PropertyName> */}
-            </PropertyWrap>
-          </RightSide>
+          </PropertyWrap>
+        </RightSide>
         {/* </MovieWrap> */}
         <Recommendations />
       </>

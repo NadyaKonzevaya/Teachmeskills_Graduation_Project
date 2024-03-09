@@ -78,7 +78,7 @@ export const SwitchSlider = styled.span`
     &:after {
     position:absolute;
     top:50%;
-    left: ${props => props.checked ? '14px' : '2px'};
+    left: ${(props) => (props.checked ? '14px' : '2px')};
     width:16px;
     height:16px;
     border-radius:50%;

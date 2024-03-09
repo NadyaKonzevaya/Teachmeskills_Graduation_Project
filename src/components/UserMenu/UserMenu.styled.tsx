@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import { MdKeyboardArrowDown } from "react-icons/md";
-
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import colors from '../../constants/colorConstants';
 
 export const UserMenuWrap = styled.div`

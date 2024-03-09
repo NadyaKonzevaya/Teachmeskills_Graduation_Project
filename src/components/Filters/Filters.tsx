@@ -4,11 +4,13 @@ import IBackDropProps from '../Backdrop/Backdrop.types';
 import {
   Container, Form, Title, Label, LabelTitle, Wrap, RadioInput, RadioLabelLeft,
   RadioLabelRight, InputWrap, Input, GenresWrap, Genre, CrossButton, InputFromTo, FromToWrap,
-  Select, FormButton, TitleWrap, StyledLink,
+  FormButton, TitleWrap, StyledLink,
 } from './Filters.styled';
 import { useAppDispatch } from '../../redux/hooks';
 import { IParams, fetchMoviesByParams, fetchMoviesByQuery } from '../../redux/movies/operations';
 import { genres } from '../../utils/constants';
+import TEXTNODES from '../../constants/textConstants';
+import Select from '../Select/Select';
 
 export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
   const [sortIsChecked, setSortIsChecked] = useState('year');
@@ -85,21 +87,21 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
       <Container>
         <Form>
           <TitleWrap>
-            <Title>Filters</Title>
+            <Title>{TEXTNODES.FILTERS}</Title>
             <CrossButton type="button" onClick={handleClose}><IoMdClose /></CrossButton>
           </TitleWrap>
           <Wrap>
-            <LabelTitle>Sort by</LabelTitle>
-            <RadioLabelLeft htmlFor="rating" checked={sortIsChecked === 'rating'}>Rating</RadioLabelLeft>
-            <RadioInput type="radio" name="sorting" value="rating" id="rating" onChange={setCheckedInput} />
-            <RadioLabelRight htmlFor="year" checked={sortIsChecked === 'year'}>Year</RadioLabelRight>
-            <RadioInput type="radio" name="sorting" value="year" id="year" onChange={setCheckedInput} />
+            <LabelTitle>{TEXTNODES.SORT_BY}</LabelTitle>
+            <RadioLabelLeft htmlFor={TEXTNODES.RATING} checked={sortIsChecked === 'rating'}>{TEXTNODES.RATING}</RadioLabelLeft>
+            <RadioInput type="radio" name="sorting" value={TEXTNODES.RATING} id={TEXTNODES.RATING} onChange={setCheckedInput} />
+            <RadioLabelRight htmlFor={TEXTNODES.YEAR} checked={sortIsChecked === 'year'}>{TEXTNODES.YEAR}</RadioLabelRight>
+            <RadioInput type="radio" name="sorting" value={TEXTNODES.YEAR} id={TEXTNODES.YEAR} onChange={setCheckedInput} />
           </Wrap>
           <InputWrap>
-            <Label htmlFor="title">Full or short movie name</Label>
+            <Label htmlFor="title">{TEXTNODES.FULL_OR_SHOT_MOVIE_NAME}</Label>
             <Input type="text" id="title" placeholder="Your text" onChange={setTitleQuery} />
           </InputWrap>
-          <Label htmlFor="genres">Genres</Label>
+          <Label htmlFor={TEXTNODES.GENRES}>{TEXTNODES.GENRES}</Label>
           <GenresWrap>
             { genresInFilter.map((genre) => (
               <Genre key={genre}>
@@ -109,31 +111,27 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
             ))}
           </GenresWrap>
           <InputWrap>
-            <Label htmlFor="years">Years</Label>
+            <Label htmlFor={TEXTNODES.YEARS}>{TEXTNODES.YEARS}</Label>
             <FromToWrap>
-              <InputFromTo type="number" id="years" placeholder="From" name="yearStart" onBlur={setYearQuery} />
+              <InputFromTo type="number" id={TEXTNODES.YEARS} placeholder="From" name="yearStart" onBlur={setYearQuery} />
               <InputFromTo type="number" id="years_" placeholder="To" name="yearEnd" onBlur={setYearQuery} />
             </FromToWrap>
           </InputWrap>
           <InputWrap>
-            <Label htmlFor="rating2">Rating</Label>
+            <Label htmlFor="rating2">{TEXTNODES.RATING}</Label>
             <FromToWrap>
               <InputFromTo type="number" id="rating2" placeholder="From" />
               <InputFromTo type="number" id="rating2_" placeholder="To" />
             </FromToWrap>
           </InputWrap>
           <InputWrap>
-            <Label htmlFor="country">Country</Label>
-            <Select name="country" id="country">
-              <option value="Select country">Select country</option>
-              <option value="Belarus">Belarus</option>
-              <option value="USA">USA</option>
-            </Select>
+            <Label htmlFor={TEXTNODES.COUNTRY}>{TEXTNODES.COUNTRY}</Label>
+            <Select />
           </InputWrap>
           <FromToWrap>
-            <FormButton type="submit">Clear filter</FormButton>
+            <FormButton type="submit">{TEXTNODES.CLEAR_FILTERS}</FormButton>
             <FormButton type="submit" onClick={handleSubmit}>
-              <StyledLink to="sorting">Show results</StyledLink>
+              <StyledLink to="sorting">{TEXTNODES.SHOW_RESULTS}</StyledLink>
             </FormButton>
           </FromToWrap>
 

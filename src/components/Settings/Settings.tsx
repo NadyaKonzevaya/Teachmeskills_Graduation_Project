@@ -3,6 +3,7 @@ import {
   Label, Title, Wrapper, Input, Form, SettingsWrapper, LabelBottom, SwitchCheck, SwitchLabel,
   Switch, SwitchSlider, Text, Button, ButtonWrap,
 } from './Settings.styled';
+import TEXTNODES from '../../constants/textConstants';
 
 export default function Settings() {
   const [checked, setChecked] = useState(false);
@@ -13,38 +14,38 @@ export default function Settings() {
   return (
     <SettingsWrapper>
       <Form>
-        <Title>Profile</Title>
+        <Title>{TEXTNODES.PROFILE}</Title>
         <Wrapper>
-          <Label htmlFor="name">
-            Name
-            <Input id="name" type="text" name="name" autoComplete="name" />
+          <Label htmlFor={TEXTNODES.NAME}>
+            {TEXTNODES.NAME}
+            <Input id="name" type="text" name={TEXTNODES.NAME} autoComplete={TEXTNODES.NAME} />
           </Label>
-          <Label htmlFor="email">
-            Email
-            <Input id="email" type="email" name="email" autoComplete="email" />
+          <Label htmlFor={TEXTNODES.EMAIL}>
+            {TEXTNODES.EMAIL}
+            <Input id={TEXTNODES.EMAIL} type="email" name="email" autoComplete={TEXTNODES.EMAIL} />
           </Label>
 
         </Wrapper>
-        <Title>Password</Title>
+        <Title>{TEXTNODES.PASSWORD}</Title>
         <Wrapper>
-          <Label htmlFor="password">
-            Password
-            <Input id="password" type="password" name="password" placeholder="New password" autoComplete="password" />
+          <Label htmlFor={TEXTNODES.PASSWORD}>
+            {TEXTNODES.PASSWORD}
+            <Input id={TEXTNODES.PASSWORD} type="password" name="password" placeholder="New password" autoComplete={TEXTNODES.PASSWORD} />
           </Label>
-          <Label htmlFor="newPassword">
-            New password
-            <Input id="newPassword" type="password" name="newPassword" placeholder="New password" autoComplete="new-password" />
+          <Label htmlFor={TEXTNODES.NEW_PASSWORD}>
+            {TEXTNODES.NEW_PASSWORD}
+            <Input id={TEXTNODES.NEW_PASSWORD} type="password" name="newPassword" placeholder={TEXTNODES.NEW_PASSWORD} autoComplete={TEXTNODES.NEW_PASSWORD} />
           </Label>
-          <LabelBottom htmlFor="confirmPassword">
-            Confirm password
-            <Input id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" autoComplete="new-password" />
+          <LabelBottom htmlFor={TEXTNODES.CONFIRM_PASSWORD}>
+            {TEXTNODES.CONFIRM_PASSWORD}
+            <Input id={TEXTNODES.CONFIRM_PASSWORD} type="password" name="confirmPassword" placeholder={TEXTNODES.CONFIRM_PASSWORD} autoComplete={TEXTNODES.CONFIRM_PASSWORD} />
           </LabelBottom>
         </Wrapper>
-        <Title>Color mode</Title>
+        <Title>{TEXTNODES.COLOR_MODE}</Title>
         <Wrapper>
           <div>
-            <Label>Dark</Label>
-            <Text>Use dark theme</Text>
+            <Label>{TEXTNODES.DARK}</Label>
+            <Text>{TEXTNODES.USE_DARK_THEME}</Text>
           </div>
           <Switch>
             <SwitchCheck type="checkbox" id="switch" checked={checked} onChange={toggleCheck} />
@@ -54,8 +55,8 @@ export default function Settings() {
           </Switch>
         </Wrapper>
         <ButtonWrap>
-          <Button type="submit">Cancel</Button>
-          <Button type="submit">Save</Button>
+          <Button type="submit">{TEXTNODES.CANCEL}</Button>
+          <Button type="submit">{TEXTNODES.SAVE}</Button>
         </ButtonWrap>
       </Form>
     </SettingsWrapper>

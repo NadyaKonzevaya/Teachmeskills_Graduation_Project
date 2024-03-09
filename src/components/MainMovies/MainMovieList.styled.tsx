@@ -26,4 +26,4 @@ export const ShowMoreButton = styled.button`
 
 export const MainWrapper = styled.div`
     grid-column: 2 / 5;
-`
+`;

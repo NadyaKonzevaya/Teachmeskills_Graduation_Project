@@ -14,12 +14,14 @@ export default function Movie({
       </ImgWrap>
       <Title>{title}</Title>
       <GenreList>
-        {genreNames.map((genre) => (
-          <GenteItem key={genre}>
-            {genre}
-            <LuDot />
-          </GenteItem>
-        ))}
+        {genreNames.map((genre) => {
+          return (
+            <GenteItem key={genre[0]}>
+              {genre[1]}
+              <LuDot />
+            </GenteItem>
+          );
+        })}
       </GenreList>
       <Rating rating={vote_average}>{Math.round(vote_average * 10) / 10}</Rating>
     </MovieWrap>
