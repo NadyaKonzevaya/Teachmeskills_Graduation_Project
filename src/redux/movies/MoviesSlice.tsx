@@ -12,6 +12,7 @@ export interface IMovie {
   title: string,
   genre_ids: number[],
   vote_average: number,
+  overview?: string,
   actors?: string[],
   recommendations?: IMovie[],
   isFavorite?: boolean,

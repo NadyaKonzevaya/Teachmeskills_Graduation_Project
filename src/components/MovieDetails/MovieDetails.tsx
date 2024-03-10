@@ -16,10 +16,7 @@ import { Recommendations } from '../Recommendations';
 import TEXTNODES from '../../constants/textConstants';
 
 export default function MovieDetails() {
-  const dispatch = useAppDispatch();
-  const { movieId } = useParams();
   const movie = useAppSelector(getMovieDetailsSelector);
-  console.log(movie);
   const rating = useMemo(() => (movie ? Math.round(movie.vote_average * 10) / 10 : 0), [movie]);
   const formatedBudget = useMemo(() => (movie ? movie.budget.toLocaleString() : 0), [movie]);
   const countries = useMemo(() => {
@@ -41,20 +38,6 @@ export default function MovieDetails() {
     const list = movie ? movie.actors : null;
     return list?.join(', ');
   }, [movie]);
-
-  useEffect(() => {
-    Promise.all([
-      fetchMovieDetails(Number(movieId)),
-      fetchCastMovieDetails(Number(movieId)),
-      fetchRecommendsMovieDetails(Number(movieId)),
-    ]).then(([movieDetails, castDetails, recommendDetails]) => {
-      dispatch(movieDetails);
-      dispatch(castDetails);
-      dispatch(recommendDetails);
-    }).catch((error) => {
-      console.log('ошибка в загрузке деталей фильма', error);
-    });
-  }, [dispatch, movieId]);
 
   return (
     movie && movie.actors && movie.recommendations && (

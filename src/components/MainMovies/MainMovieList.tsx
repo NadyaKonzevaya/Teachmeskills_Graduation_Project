@@ -10,7 +10,7 @@ import { getMoviesWithUpdatedGenres } from '../../utils/formateDataFromBackEnd';
 import TEXTNODES from '../../constants/textConstants';
 
 export default function MainMovieList() {
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(2);
   const dispatch = useAppDispatch();
   const movies = useAppSelector(getMoviesSelector);
   const isLoading = useAppSelector(getIsLoadingSelector);

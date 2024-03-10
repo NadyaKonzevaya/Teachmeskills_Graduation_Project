@@ -30,14 +30,14 @@ export const fetchMovies = createAsyncThunk<IMovie[], void, { rejectValue: strin
 });
 export const fetchMoreMovies = createAsyncThunk<IMovie[], { page: number }, { rejectValue: string }>('movies/fetchMoreMovies', async ({ page }, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`${BASE_URL}/3/trending/movie/day?api_key=${API_KEY}&page=${page}`);
+    const response = await axios.get(`${BASE_URL}/3/trending/movie/week?api_key=${API_KEY}&page=${page}`);
     return response.data.results;
   } catch (error) {
     return rejectWithValue(error.message);
   }
 });
 
-export const fetchMovieDetails = createAsyncThunk<IMovie[], number, { rejectValue: string }>('cards/fetchMovieDetails', async (movieId, { rejectWithValue }) => {
+export const fetchMovieDetails = createAsyncThunk<IMovie[], number, { rejectValue: string }>('movies/fetchMovieDetails', async (movieId, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${BASE_URL}/3/movie/${movieId}?api_key=${API_KEY}`);
 
@@ -47,7 +47,7 @@ export const fetchMovieDetails = createAsyncThunk<IMovie[], number, { rejectValu
   }
 });
 
-export const fetchCastMovieDetails = createAsyncThunk<IActor[], number, { rejectValue: string }>('cards/fetchCastMovieDetails', async (movieId, { rejectWithValue }) => {
+export const fetchCastMovieDetails = createAsyncThunk<IActor[], number, { rejectValue: string }>('movies/fetchCastMovieDetails', async (movieId, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${BASE_URL}/3/movie/${movieId}/credits?api_key=${API_KEY}`);
 
@@ -57,7 +57,7 @@ export const fetchCastMovieDetails = createAsyncThunk<IActor[], number, { reject
   }
 });
 
-export const fetchRecommendsMovieDetails = createAsyncThunk<IMovie[], number, { rejectValue: string }>('cards/fetchRecommendationsMovieDetails', async (movieId, { rejectWithValue }) => {
+export const fetchRecommendsMovieDetails = createAsyncThunk<IMovie[], number, { rejectValue: string }>('movies/fetchRecommendationsMovieDetails', async (movieId, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${BASE_URL}/3/movie/${movieId}/recommendations?api_key=${API_KEY}`);
 
