@@ -13,10 +13,12 @@ export const TitleWrap = styled.div`
     align-items: center;
 `;
 export const BtnWrap = styled.div`
+position: relative;
     width: 64px;
     display: flex;
+    gap: 20px;
     justify-content: space-between;
-    align-items: center;;
+    align-items: center;
 `;
 
 export const ButtonPrev = styled.div`
@@ -28,7 +30,7 @@ position: static;
     margin-right: 16px;
     &::after {
     content: ''; 
-    display: inline-block;
+    display: none;
     }
 `;
 
@@ -40,6 +42,6 @@ position: static;
     color: ${colors.backgroundColors.graphite};
     &::after {
     content: ''; 
-    display: inline-block;
+    display: none;
     }
 `;

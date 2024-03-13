@@ -19,7 +19,8 @@ export const ShowMoreButton = styled.button`
     width: 160px;
     height: 40px;
     border-radius: 40px;
-    background-color: ${colors.contextualColors.light};
+    background-color: ${(props) => props.theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.light}`};
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
     margin-left: auto;
     margin-right: auto;
 `;

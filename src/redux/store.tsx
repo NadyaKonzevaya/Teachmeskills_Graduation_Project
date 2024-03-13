@@ -1,38 +1,39 @@
 import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
 import {
-//   persistStore,
+  persistStore,
   persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 import moviesReducer from './movies/MoviesSlice';
+import authReducer from './auth/authSlice';
 
-// const persistCardConfig = {
-//   key: 'cards',
-//   storage,
-// };
-// const persistAuthConfig = {
-//   key: 'auth',
-//   storage,
-//   blacklist: ['tokens'],
-// };
+const persistMovieConfig = {
+  key: 'movies',
+  storage,
+  whitelist: ['currentMovie', 'favorites'],
+};
+const persistAuthConfig = {
+  key: 'auth',
+  storage,
+  blacklist: ['tokens'],
+};
 
-// const persistedCardsReducer = persistReducer(
-//   persistCardConfig,
-//   cardsReducer,
-// );
+const persistedMoviesReducer = persistReducer(
+  persistMovieConfig,
+  moviesReducer,
+);
 
-// const persistedAuthReducer = persistReducer(
-//   persistAuthConfig,
-//   authReducer,
-// );
+const persistedAuthReducer = persistReducer(
+  persistAuthConfig,
+  authReducer,
+);
 
 const listenerMiddleware = createListenerMiddleware();
 
 export const store = configureStore({
   reducer: {
-    // auth: persistedAuthReducer,
-    // cardView: cardViewReducer,
-    movies: moviesReducer,
+    auth: persistedAuthReducer,
+    movies: persistedMoviesReducer,
   },
   middleware:
     (getDefaultMiddleware) => getDefaultMiddleware({
@@ -42,7 +43,7 @@ export const store = configureStore({
     }).concat([listenerMiddleware.middleware]),
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

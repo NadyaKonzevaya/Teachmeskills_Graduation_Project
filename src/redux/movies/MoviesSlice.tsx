@@ -26,6 +26,7 @@ export interface IMovie {
 
 export interface IMoviesState {
   items: IMovie[];
+  favorites: IMovie[];
   //   myCards: IAllCard[];
   //   count: number;
   isLoading: boolean;
@@ -52,6 +53,7 @@ export interface IActor {
 
 const initialState: IMoviesState = {
   items: [],
+  favorites: [],
   //   myCards: [],
   //   count: 0,
   isLoading: false,
@@ -65,12 +67,27 @@ export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-  //     toggleIsFavorite: (state, action: PayloadAction<number>) => {
-  //       const index = state.cards.findIndex((card) => card.id === action.payload);
-  //       state.cards[index].isFavorite = !state.cards[index].isFavorite;
-  //     },
+    toggleIsFavorite: (state, action: PayloadAction<number>) => {
+      const index = state.items.findIndex((movie) => movie.id === action.payload);
+      if (index !== -1) {
+        const updatedItems = [...state.items];
+        updatedItems[index].isFavorite = !updatedItems[index].isFavorite;
+        state.items = updatedItems;
+        // state.currentMovie = updatedItems[index];
+        state.currentMovie.isFavorite = !state.currentMovie?.isFavorite;
+        const isMovieInFavorite = state.favorites.find(({id}) => id === state.currentMovie.id)
+        if (state.currentMovie.isFavorite && !isMovieInFavorite) {
+          state.favorites.push(state.currentMovie);
+        } else {
+          state.favorites = state.favorites.filter((favMovie) => favMovie.id !== action.payload);
+        }
+      }
+    },
     setCurrentMovie: (state, action: PayloadAction<number>) => {
       state.currentMovie = state.items.find((movie) => movie.id === action.payload);
+    },
+    filterMoviesByRating: (state, action) => {
+      state.items = state.items.filter(({ vote_average }) => vote_average >= action.payload.start && vote_average <= action.payload.end);
     },
   },
   extraReducers: (builder) => builder
@@ -80,7 +97,7 @@ export const moviesSlice = createSlice({
     .addCase(fetchMovies.fulfilled, (state, action: PayloadAction<IMovie[]>) => {
       state.isLoading = false;
       state.error = null;
-      state.items = action.payload;
+      state.items = action.payload.map((movie) => ({ ...movie, isFavorite: false }));
       // state.items.push(...action.payload);
       //   state.cards = action.payload.map((card) => ({ ...card, isFavorite: false }));
     })
@@ -145,6 +162,6 @@ export const moviesSlice = createSlice({
   // }),
 });
 
-export const { setCurrentMovie } = moviesSlice.actions;
+export const { setCurrentMovie, filterMoviesByRating, toggleIsFavorite } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

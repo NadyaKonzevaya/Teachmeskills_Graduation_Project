@@ -8,3 +8,7 @@ export { UserMenu } from './UserMenu';
 export { MainMovieList } from './MainMovies';
 export { Settings } from './Settings';
 export { FilteredMovieList } from './FilteredMovieList';
+export { SignInForm } from './SignInForm';
+export { SearchList } from './SearchList';
+export { TrendsMovieList } from './TrendsMovieList';
+export { FavoriteMovieList } from './FavoriteMovieList';

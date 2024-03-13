@@ -47,4 +47,23 @@ export const genres = [
   [14, 'фэнтези'],
 ];
 
-export const selectValue = ['Select country', 'Australia', 'Belgium', 'Canada', 'China', 'France', 'Germany', 'Hong Kong', 'India', 'Ireland', 'Japan', 'Poland', 'South Korea', 'Taiwan', 'United Kingdom', 'United States of America']
+export const selectValue = [
+  ['Select country', 'Select country'],
+  ['AU', 'Australia'],
+  // ['Belgium'],
+  ['CA', 'Canada'],
+  ['CN', 'China'],
+  ['FR', 'France'],
+  ['DE', 'Germany'],
+  // ['Hong Kong'],
+  ['IN', 'India'],
+  ['IT', 'Italy'],
+  ['IE', 'Ireland'],
+  ['JP', 'Japan'],
+  ['PL', 'Poland'],
+  ['KR', 'South Korea'],
+  ['ES', 'Spain'],
+  ['TW', 'Taiwan'],
+  ['GB', 'United Kingdom'],
+  ['US', 'United States of America'],
+];

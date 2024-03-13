@@ -3,7 +3,10 @@ import colors from '../../constants/colorConstants';
 // import { MainWrapper } from '../MainMovies/MainMovieList.styled';
 
 export const SettingsWrapper = styled.div`
-    padding: 16px 367px 64px 62px;
+grid-column: 2 / 4;
+    /* padding-top: 16px;
+    padding-bottom: 64px;
+    padding-left: 62px; */
 `;
 export const Form = styled.form`
     width: 100%;
@@ -13,21 +16,27 @@ export const Title = styled.h2`
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 16px;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
 `;
 export const Text = styled.p`
     padding: 0;
     margin: 0;
+    color: ${colors.contextualColors.light}
 `;
 
 export const Wrapper = styled.div`
     padding: 24px 40px;
-    border: 2px solid #afb2b6;
+     border: ${(props) => !props.theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 40px;
+    background-color: ${(props) => props.theme && `${colors.backgroundColors.dark}`};
+    &:active {
+        background-color: ${(props) => props.theme && `${colors.backgroundColors.dark}`};
+    }
 `;
 
 export const Label = styled.label`
@@ -35,6 +44,7 @@ flex-basis: calc((100% - 40px) / 2);
     display: inline-flex;
     flex-direction: column;
     font-weight: 600;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
 `;
 
 export const Input = styled.input`
@@ -44,14 +54,17 @@ export const Input = styled.input`
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: border-box;
-      border: 2px solid #afb2b6;
+     border: ${(props) => !props.theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 10px;
     font-size: 16px;
+    background-color: ${(props) => props.theme && `${colors.backgroundColors.graphite}`};
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
 `;
 
 export const LabelBottom = styled(Label)`
     margin-top: 24px;
     margin-left: auto;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
 `;
 
 export const Switch = styled.div`
@@ -100,10 +113,11 @@ export const Button = styled.button`
     width: 266px;
     height: 56px;
     font-family: inherit;
-    background-color: ${colors.contextualColors.white};
-      border: 2px solid #afb2b6;
-      margin-left: 40px;
-      &:hover, &:active {
+    background-color: ${(props) => props.theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.white}`};
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
+    border: ${(props) => !props.theme && `2px solid ${colors.contextualColors.light}`};
+    margin-left: 40px;
+    &:hover, &:active {
         background-color: ${colors.systemColors.primary};
         
       }

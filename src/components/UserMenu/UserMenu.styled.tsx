@@ -33,6 +33,7 @@ export const Name = styled.p`
     font-weight: 600;
     margin-left: 20px;
     margin-right: 51px;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`}
 `;
 
 export const MdKeyboardArrowDownElement = styled(MdKeyboardArrowDown)`

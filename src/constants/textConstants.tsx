@@ -33,6 +33,10 @@ enum TEXTNODES {
   TRENDS = 'Trends',
   FAVORITES = 'Favorites',
   SETTINGS = 'Settings',
+  SIGN_UP = 'Sign Up',
+  HAVE_ACCOUNT = 'Already have an account?',
+  SIGN_IN = 'Sign In',
+  NO_ACCOUNT = 'Don’t have an account?'
 }
 
 export default TEXTNODES;

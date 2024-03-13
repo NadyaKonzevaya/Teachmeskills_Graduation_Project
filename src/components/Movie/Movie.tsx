@@ -1,14 +1,17 @@
 import { LuDot } from 'react-icons/lu';
+import { useContext } from 'react';
 import {
   GenreList, GenteItem, ImgWrap, MovieImg, MovieWrap, Rating, Title,
 } from './Movie.styled';
 import { IMAGE_BASE_URL } from '../../utils/constants';
 import { useAppDispatch } from '../../redux/hooks';
 import { fetchCastMovieDetails, fetchMovieDetails, fetchRecommendsMovieDetails } from '../../redux/movies/operations';
+import ThemeContext from '../../utils/Context';
 
 export default function Movie({
   genreNames, id, poster_path, title, vote_average,
 }) {
+  const { theme } = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const handleClick = async () => {
     try {
@@ -27,14 +30,16 @@ export default function Movie({
       <ImgWrap to={`/movies/${id}`} onClick={handleClick}>
         <MovieImg src={`${IMAGE_BASE_URL}${poster_path}`} alt={title} />
       </ImgWrap>
-      <Title>{title}</Title>
+      <Title theme={theme === 'dark'}>{title}</Title>
       <GenreList>
-        {genreNames.map((genre) => (
-          <GenteItem key={genre[0]}>
-            {genre[1]}
-            <LuDot />
-          </GenteItem>
-        ))}
+        {genreNames.map((genre) => {
+          return (
+            <GenteItem key={genre[0]}>
+              {genre[1]}
+              <LuDot />
+            </GenteItem>
+          );
+        })}
       </GenreList>
       <Rating rating={vote_average}>{Math.round(vote_average * 10) / 10}</Rating>
     </MovieWrap>

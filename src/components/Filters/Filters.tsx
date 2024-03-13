@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import IBackDropProps from '../Backdrop/Backdrop.types';
 import {
@@ -11,25 +11,40 @@ import { IParams, fetchMoviesByParams, fetchMoviesByQuery } from '../../redux/mo
 import { genres } from '../../utils/constants';
 import TEXTNODES from '../../constants/textConstants';
 import Select from '../Select/Select';
+import { filterMoviesByRating } from '../../redux/movies/MoviesSlice';
 
 export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
-  const [sortIsChecked, setSortIsChecked] = useState('year');
-  const [params, setParams] = useState<IParams>({ sortingBy: 'primary_release_date.desc', page: 1, minVotes: 1000 });
+  const [sortIsChecked, setSortIsChecked] = useState('Year');
+  const [params, setParams] = useState<IParams>({});
   const [query, setQuery] = useState<string>('');
   const genresValue = Object.values(genres);
   const [genresInFilter, setGenresInFilter] = useState<string[]>(genresValue);
   const [years, setYears] = useState({ start: '', end: '' });
+  const [rating, setRating] = useState({ start: 0, end: 10 });
+  const [country, setCountry] = useState('Select country');
   const dispatch = useAppDispatch();
   console.log(years);
   console.log(params);
-  // console.log(years);
+
+  useEffect(() => {
+    const yearsQuery = [];
+    for (let i = Number(years.start); i <= Number(years.end); i += 1) {
+      yearsQuery.push(i);
+    }
+    const yearsQueryToString = yearsQuery.join('|');
+    if (yearsQueryToString === '0') {
+      return;
+    }
+    setParams({ ...params, year: yearsQueryToString });
+  }, [years.start, years.end]);
+
   const setCheckedInput = (e) => {
     setSortIsChecked(e.target.value);
-    if (e.target.value === 'rating') {
+    if (e.target.value === 'Rating') {
       setParams({
-        ...params, sortingBy: 'vote_average.desc',
+        ...params, sortingBy: 'vote_average.desc', minVotes: 1000,
       });
-    } else if (e.target.value === 'year') {
+    } else if (e.target.value === 'Year') {
       setParams({
         ...params, sortingBy: 'primary_release_date.desc',
       });
@@ -38,8 +53,6 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
   const handleClose = () => {
     handleIsOpen(false);
   };
-
-  
 
   const setTitleQuery = (e) => {
     setQuery(e.target.value);
@@ -59,26 +72,53 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
     } else if (e.target.name === 'yearEnd') {
       setYears({ ...years, end: e.target.value });
     }
-    const start = Number(years.start);
-    const end = Number(years.end);
-    const yearsQuery = [];
-    for (let i = start; i <= end; i += 1) {
-      yearsQuery.push(i);
-    }
-    console.log(yearsQuery);
-    const yearsQueryToString = yearsQuery.join('|');
-    console.log(yearsQueryToString);
-    setParams({ ...params, year: yearsQueryToString });
+    // const start = Number(years.start);
+    // const end = Number(years.end);
+    // const yearsQuery = [];
+    // for (let i = Number(years.start); i <= Number(years.end); i += 1) {
+    //   yearsQuery.push(i);
+    // }
+    // console.log(yearsQuery);
+    // const yearsQueryToString = yearsQuery.join('|');
+    // console.log(yearsQueryToString);
+    // setParams({ ...params, year: yearsQueryToString });
     // setParams({ ...params, year: e.target.value });
+  };
+  const setRatingValue = (e) => {
+    if (e.target.name === 'ratingStart') {
+      setRating({ ...rating, start: e.target.value });
+    } else if (e.target.name === 'ratingEnd') {
+      setRating({ ...rating, end: e.target.value });
+    }
+  };
+
+  const setCountryQuery = () => {
+    setParams({ ...params, country });
+  };
+
+  const clearFilters = () => {
+    setParams({});
+    setYears({ start: '', end: '' });
+    setSortIsChecked('Year');
+    setQuery('');
+    setGenresInFilter(genresValue);
+    setYears({ start: '', end: '' });
+    setCountry('Select country');
+    setRating({ start: 0, end: 0 });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(params);
-    dispatch(fetchMoviesByParams(params));
-    if (query) {
-      dispatch(fetchMoviesByQuery(query));
-    }
+    dispatch(fetchMoviesByParams(params)).then(() => {
+      if (query) {
+        dispatch(fetchMoviesByQuery(query));
+      }
+    }).then(() => {
+      if (rating) {
+        dispatch(filterMoviesByRating(rating));
+      }
+    });
+
     handleIsOpen(false);
   };
 
@@ -92,20 +132,20 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
           </TitleWrap>
           <Wrap>
             <LabelTitle>{TEXTNODES.SORT_BY}</LabelTitle>
-            <RadioLabelLeft htmlFor={TEXTNODES.RATING} checked={sortIsChecked === 'rating'}>{TEXTNODES.RATING}</RadioLabelLeft>
+            <RadioLabelLeft htmlFor={TEXTNODES.RATING} checked={sortIsChecked === 'Rating'}>{TEXTNODES.RATING}</RadioLabelLeft>
             <RadioInput type="radio" name="sorting" value={TEXTNODES.RATING} id={TEXTNODES.RATING} onChange={setCheckedInput} />
-            <RadioLabelRight htmlFor={TEXTNODES.YEAR} checked={sortIsChecked === 'year'}>{TEXTNODES.YEAR}</RadioLabelRight>
+            <RadioLabelRight htmlFor={TEXTNODES.YEAR} checked={sortIsChecked === 'Year'}>{TEXTNODES.YEAR}</RadioLabelRight>
             <RadioInput type="radio" name="sorting" value={TEXTNODES.YEAR} id={TEXTNODES.YEAR} onChange={setCheckedInput} />
           </Wrap>
           <InputWrap>
             <Label htmlFor="title">{TEXTNODES.FULL_OR_SHOT_MOVIE_NAME}</Label>
-            <Input type="text" id="title" placeholder="Your text" onChange={setTitleQuery} />
+            <Input type="text" id="title" placeholder="Your text" onChange={setTitleQuery} value={query} />
           </InputWrap>
           <Label htmlFor={TEXTNODES.GENRES}>{TEXTNODES.GENRES}</Label>
           <GenresWrap>
             { genresInFilter.map((genre) => (
-              <Genre key={genre}>
-                {genre}
+              <Genre key={genre[0]}>
+                {genre[1]}
                 <CrossButton type="button" onClick={() => closeGenre(genre)}><IoMdClose /></CrossButton>
               </Genre>
             ))}
@@ -113,23 +153,23 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
           <InputWrap>
             <Label htmlFor={TEXTNODES.YEARS}>{TEXTNODES.YEARS}</Label>
             <FromToWrap>
-              <InputFromTo type="number" id={TEXTNODES.YEARS} placeholder="From" name="yearStart" onBlur={setYearQuery} />
-              <InputFromTo type="number" id="years_" placeholder="To" name="yearEnd" onBlur={setYearQuery} />
+              <InputFromTo type="number" id={TEXTNODES.YEARS} placeholder="From" name="yearStart" onChange={setYearQuery} value={years.start} />
+              <InputFromTo type="number" id="years_" placeholder="To" name="yearEnd" onChange={setYearQuery} value={years.end} />
             </FromToWrap>
           </InputWrap>
           <InputWrap>
             <Label htmlFor="rating2">{TEXTNODES.RATING}</Label>
             <FromToWrap>
-              <InputFromTo type="number" id="rating2" placeholder="From" />
-              <InputFromTo type="number" id="rating2_" placeholder="To" />
+              <InputFromTo type="number" id="rating2" placeholder="From" onChange={setRatingValue} name="ratingStart" value={rating.start} />
+              <InputFromTo type="number" id="rating2_" placeholder="To" onChange={setRatingValue} name="ratingEnd" value={rating.end} />
             </FromToWrap>
           </InputWrap>
           <InputWrap>
             <Label htmlFor={TEXTNODES.COUNTRY}>{TEXTNODES.COUNTRY}</Label>
-            <Select />
+            <Select onChange={setCountryQuery} value={country} setValue={setCountry} />
           </InputWrap>
           <FromToWrap>
-            <FormButton type="submit">{TEXTNODES.CLEAR_FILTERS}</FormButton>
+            <FormButton type="button" onClick={clearFilters}>{TEXTNODES.CLEAR_FILTERS}</FormButton>
             <FormButton type="submit" onClick={handleSubmit}>
               <StyledLink to="sorting">{TEXTNODES.SHOW_RESULTS}</StyledLink>
             </FormButton>

@@ -1,50 +1,75 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Label, Title, Wrapper, Input, Form, SettingsWrapper, LabelBottom, SwitchCheck, SwitchLabel,
   Switch, SwitchSlider, Text, Button, ButtonWrap,
 } from './Settings.styled';
 import TEXTNODES from '../../constants/textConstants';
+import ThemeContext from '../../utils/Context';
 
 export default function Settings() {
   const [checked, setChecked] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
+  const navigate = useNavigate();
+  console.log(theme);
+  
+
+  useEffect(() => {
+    const storedChecked = localStorage.getItem('checked');
+    if (storedChecked !== null) {
+      setChecked(JSON.parse(storedChecked));
+    }
+  }, []);
 
   const toggleCheck = () => {
     setChecked(!checked);
+    localStorage.setItem('checked', JSON.stringify(!checked));
   };
+
+  const handleSubmit = () => {
+    if (checked) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+    navigate('/movies');
+  };
+
   return (
     <SettingsWrapper>
-      <Form>
-        <Title>{TEXTNODES.PROFILE}</Title>
-        <Wrapper>
-          <Label htmlFor={TEXTNODES.NAME}>
+      <Form onSubmit={handleSubmit}>
+        <Title theme={theme === 'dark'}>{TEXTNODES.PROFILE}</Title>
+        <Wrapper theme={theme === 'dark'}>
+          <Label htmlFor={TEXTNODES.NAME} theme={theme === 'dark'}>
             {TEXTNODES.NAME}
-            <Input id="name" type="text" name={TEXTNODES.NAME} autoComplete={TEXTNODES.NAME} />
+            <Input theme={theme === 'dark'} id="name" type="text" name={TEXTNODES.NAME} autoComplete={TEXTNODES.NAME} />
           </Label>
-          <Label htmlFor={TEXTNODES.EMAIL}>
+          <Label htmlFor={TEXTNODES.EMAIL} theme={theme === 'dark'}>
             {TEXTNODES.EMAIL}
-            <Input id={TEXTNODES.EMAIL} type="email" name="email" autoComplete={TEXTNODES.EMAIL} />
+            <Input theme={theme === 'dark'} id={TEXTNODES.EMAIL} type="email" name="email" autoComplete={TEXTNODES.EMAIL} />
           </Label>
 
         </Wrapper>
-        <Title>{TEXTNODES.PASSWORD}</Title>
-        <Wrapper>
-          <Label htmlFor={TEXTNODES.PASSWORD}>
+        <Title theme={theme === 'dark'}>{TEXTNODES.PASSWORD}</Title>
+        <Wrapper theme={theme === 'dark'}>
+          <Label theme={theme === 'dark'} htmlFor={TEXTNODES.PASSWORD}>
             {TEXTNODES.PASSWORD}
-            <Input id={TEXTNODES.PASSWORD} type="password" name="password" placeholder="New password" autoComplete={TEXTNODES.PASSWORD} />
+            <Input theme={theme === 'dark'} id={TEXTNODES.PASSWORD} type="password" name="password" placeholder="New password" autoComplete={TEXTNODES.PASSWORD} />
           </Label>
-          <Label htmlFor={TEXTNODES.NEW_PASSWORD}>
+          <Label theme={theme === 'dark'} htmlFor={TEXTNODES.NEW_PASSWORD}>
             {TEXTNODES.NEW_PASSWORD}
-            <Input id={TEXTNODES.NEW_PASSWORD} type="password" name="newPassword" placeholder={TEXTNODES.NEW_PASSWORD} autoComplete={TEXTNODES.NEW_PASSWORD} />
+            <Input theme={theme === 'dark'} id={TEXTNODES.NEW_PASSWORD} type="password" name="newPassword" placeholder={TEXTNODES.NEW_PASSWORD} autoComplete={TEXTNODES.NEW_PASSWORD} />
           </Label>
-          <LabelBottom htmlFor={TEXTNODES.CONFIRM_PASSWORD}>
+          <LabelBottom theme={theme === 'dark'} htmlFor={TEXTNODES.CONFIRM_PASSWORD}>
             {TEXTNODES.CONFIRM_PASSWORD}
-            <Input id={TEXTNODES.CONFIRM_PASSWORD} type="password" name="confirmPassword" placeholder={TEXTNODES.CONFIRM_PASSWORD} autoComplete={TEXTNODES.CONFIRM_PASSWORD} />
+            <Input theme={theme === 'dark'} id={TEXTNODES.CONFIRM_PASSWORD} type="password" name="confirmPassword" placeholder={TEXTNODES.CONFIRM_PASSWORD} autoComplete={TEXTNODES.CONFIRM_PASSWORD} />
           </LabelBottom>
         </Wrapper>
-        <Title>{TEXTNODES.COLOR_MODE}</Title>
-        <Wrapper>
+        <Title theme={theme === 'dark'}>{TEXTNODES.COLOR_MODE}</Title>
+        <Wrapper theme={theme === 'dark'}>
           <div>
-            <Label>{TEXTNODES.DARK}</Label>
+            <Label theme={theme === 'dark'}>{TEXTNODES.DARK}</Label>
             <Text>{TEXTNODES.USE_DARK_THEME}</Text>
           </div>
           <Switch>
@@ -55,8 +80,8 @@ export default function Settings() {
           </Switch>
         </Wrapper>
         <ButtonWrap>
-          <Button type="submit">{TEXTNODES.CANCEL}</Button>
-          <Button type="submit">{TEXTNODES.SAVE}</Button>
+          <Button type="button" theme={theme === 'dark'}>{TEXTNODES.CANCEL}</Button>
+          <Button type="submit" theme={theme === 'dark'}>{TEXTNODES.SAVE}</Button>
         </ButtonWrap>
       </Form>
     </SettingsWrapper>

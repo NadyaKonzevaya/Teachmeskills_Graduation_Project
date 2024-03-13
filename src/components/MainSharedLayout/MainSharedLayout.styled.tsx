@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import {
   RiHome6Fill, RiFireFill, RiBookmarkFill, RiSettings5Fill,
 } from 'react-icons/ri';
@@ -8,6 +9,7 @@ import { CopyRight } from '../RegistrationSharedLayout/RegistrationSharedLayout.
 export const BackgroundMain = styled.div`
     margin: 0;
     background-color: ${colors.contextualColors.white};
+    background-color: ${(props) => (props.theme ? `${colors.backgroundColors.black}` : `${colors.contextualColors.white}`)};
     min-height: 100vh;
     display: grid;
     grid-template: minmax(136px, auto) 1fr / 1fr;
@@ -41,11 +43,12 @@ export const NavMenu = styled.nav`
    
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled(Link)`
     display: flex;
     align-items: center;
     gap: 20px;
-    color: ${colors.systemColors.secondary};
+    /* color: ${colors.systemColors.secondary}; */
+    color: ${(props) => (props.active === 'true' ? '#7B61FF' : '#80858B')};
 `;
 
 export const NavText = styled.p`

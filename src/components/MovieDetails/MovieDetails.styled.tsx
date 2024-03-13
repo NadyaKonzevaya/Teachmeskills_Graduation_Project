@@ -29,8 +29,11 @@ export const ReactionWrap = styled.div`
     width: 100%;
 
 `;
+interface ReactionBtnProps {
+  isFavorite: boolean;
+}
 
-export const ReactionBtn = styled.button`
+export const ReactionBtn = styled.button<ReactionBtnProps>`
 width: 49%;
 height: 56px;
 margin-right: 2px;
@@ -40,6 +43,12 @@ color: ${colors.contextualColors.light};
 display: inline-flex;
 align-items: center;
 justify-content: center;
+color: ${(props) => (props.isFavorite ? '#7B61FF' : '#AFB2B6')};
+
+/* &:hover, &:focus {
+    color: ${colors.systemColors.primary};
+    border: 2px solid ${colors.contextualColors.primary}; */
+/* } */
 `;
 
 export const ShareElement = styled(IoShareSocialOutline)`

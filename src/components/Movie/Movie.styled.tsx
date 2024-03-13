@@ -27,7 +27,9 @@ export const MovieImg = styled.img`
 export const Title = styled.h2`
     font-size: 16px;
     font-weight: 700;
-    margin: 0;
+    margin-top: 24px;
+    margin-bottom: 4px;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
 `;
 
 export const GenreList = styled.ul`
@@ -41,6 +43,7 @@ margin: 0;
 export const GenteItem = styled.li`
     display: flex;
     align-items: center;
+     color: ${(props) => props.theme && `${colors.contextualColors.light}`}
     
 `;
 

@@ -32,7 +32,8 @@ box-sizing: border-box;
     height: 56px;
     /* max-width: 1184px; */
     width: 100%;
-    border: 2px solid ${colors.contextualColors.light};
+    background-color: ${(props) => props.theme && `${colors.backgroundColors.graphite}`};
+    border:  ${(props) => !props.theme && `2px solid ${colors.contextualColors.light}`}; ;
     border-radius: 10px;
     font-size: 16px;
 `;
