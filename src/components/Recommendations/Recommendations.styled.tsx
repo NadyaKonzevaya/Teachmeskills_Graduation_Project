@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import colors from '../../constants/colorConstants';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
 
 export const Wrap = styled.div`
 grid-area: 2 / 3;
@@ -24,7 +25,7 @@ position: relative;
 export const ButtonPrev = styled.div`
 position: static;
     margin: 0;
-    width: 20px;
+    width: 15px !important; 
     display: block;
     color: ${colors.backgroundColors.graphite};
     margin-right: 16px;
@@ -34,11 +35,20 @@ position: static;
     }
 `;
 
+export const FaArrowLeftElement = styled(FaArrowLeft)`
+    width: 10px;
+    fill: ${colors.backgroundColors.graphite};
+`;
+export const FaArrowRightElement = styled(FaArrowRight)`
+    width: 10px;
+    fill: ${colors.backgroundColors.graphite};
+`;
+
 export const ButtonNext = styled.div`
 position: static;
     margin: 0;
     display: block;
-    width: 20px;
+    width: 15px !important;
     color: ${colors.backgroundColors.graphite};
     &::after {
     content: ''; 

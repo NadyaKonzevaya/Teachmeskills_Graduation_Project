@@ -8,7 +8,7 @@ import '../index.css';
 import ThemeContext, { THEME } from '../utils/Context';
 
 export default function RootComponent() {
-  const [theme, setTheme] = useState<THEME>('light');
+  const [theme, setTheme] = useState<THEME>('dark');
   const themeMemo = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
   return (
     <React.StrictMode>

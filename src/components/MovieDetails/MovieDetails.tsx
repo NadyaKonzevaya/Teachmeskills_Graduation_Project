@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { LuDot } from 'react-icons/lu';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -15,8 +15,10 @@ import { formateDate } from '../../utils/formateDataFromBackEnd';
 import { Recommendations } from '../Recommendations';
 import TEXTNODES from '../../constants/textConstants';
 import { toggleIsFavorite } from '../../redux/movies/MoviesSlice';
+import ThemeContext from '../../utils/Context';
 
 export default function MovieDetails() {
+  const { theme } = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const movie = useAppSelector(getMovieDetailsSelector);
   console.log(movie?.isFavorite);
@@ -113,7 +115,7 @@ export default function MovieDetails() {
               </GenteItem>
             ))}
           </GenreList>
-          <Title>{movie.title}</Title>
+          <Title theme={theme === 'dark'}>{movie.title}</Title>
           <RatingWrap>
             <Rating rating={movie.vote_average}>{rating}</Rating>
             <ImdbRating>
@@ -127,23 +129,23 @@ export default function MovieDetails() {
               min
             </ImdbRating>
           </RatingWrap>
-          <Text>{movie.overview}</Text>
+          <Text theme={theme === 'dark'}>{movie.overview}</Text>
           <PropertyWrap>
-            <PropertyName>{TEXTNODES.YEAR}</PropertyName>
-            <Value>{movie.release_date?.slice(0, 4)}</Value>
-            <PropertyName>{TEXTNODES.RELEASED}</PropertyName>
-            <Value>{formateDate(movie.release_date)}</Value>
-            <PropertyName>{TEXTNODES.BOX_OFFICE}</PropertyName>
-            <Value>
+            <PropertyName theme={theme === 'dark'}>{TEXTNODES.YEAR}</PropertyName>
+            <Value theme={theme === 'dark'}>{movie.release_date?.slice(0, 4)}</Value>
+            <PropertyName theme={theme === 'dark'}>{TEXTNODES.RELEASED}</PropertyName>
+            <Value theme={theme === 'dark'}>{formateDate(movie.release_date)}</Value>
+            <PropertyName theme={theme === 'dark'}>{TEXTNODES.BOX_OFFICE}</PropertyName>
+            <Value theme={theme === 'dark'}>
               $
               {formatedBudget}
             </Value>
-            <PropertyName>{TEXTNODES.COUNTRY}</PropertyName>
-            <Value>{countries}</Value>
-            <PropertyName>{TEXTNODES.PRODUCTION}</PropertyName>
-            <Value>{productions}</Value>
-            <PropertyName>{TEXTNODES.ACTORS}</PropertyName>
-            <Value>{mainActors}</Value>
+            <PropertyName theme={theme === 'dark'}>{TEXTNODES.COUNTRY}</PropertyName>
+            <Value theme={theme === 'dark'}>{countries}</Value>
+            <PropertyName theme={theme === 'dark'}>{TEXTNODES.PRODUCTION}</PropertyName>
+            <Value theme={theme === 'dark'}>{productions}</Value>
+            <PropertyName theme={theme === 'dark'}>{TEXTNODES.ACTORS}</PropertyName>
+            <Value theme={theme === 'dark'}>{mainActors}</Value>
             {/* <PropertyName>
           Director:
           <Value />

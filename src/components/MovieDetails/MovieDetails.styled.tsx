@@ -61,8 +61,9 @@ export const RightSide = styled.div`
 `;
 
 export const Title = styled.h2`
-margin-top: 10px;
-    margin-bottom: 24px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  color: ${(props) => props.theme && `${colors.contextualColors.white}`}
 `;
 
 export const RatingWrap = styled.div`
@@ -98,7 +99,7 @@ export const Rating = styled.span`
 export const ImdbRating = styled.span`
     width: 79px;
     height: 28px;
-    background-color: ${colors.contextualColors.light};
+    background-color: ${(props) => props.theme ? `${colors.backgroundColors.graphite}` : ` ${colors.contextualColors.light}`};
     color: ${colors.contextualColors.white};
     display: flex;
     justify-content: center;
@@ -109,15 +110,18 @@ export const ImdbRating = styled.span`
 export const Text = styled.p`
 margin-top: 0;
     margin-bottom: 40px;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`}
 `;
 
 export const PropertyName = styled.p`
 /* margin-bottom: 20px; */
 font-weight: 600;
 margin: 0;
+color: ${(props) => props.theme && `${colors.contextualColors.light}`}
     `;
 export const Value = styled.span`
     font-weight: 500;
+    color: ${(props) => props.theme && `${colors.contextualColors.white}`}
 `;
 
 export const PropertyWrap = styled.div`

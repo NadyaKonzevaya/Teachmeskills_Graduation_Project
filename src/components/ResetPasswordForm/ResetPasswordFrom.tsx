@@ -1,4 +1,5 @@
 // import { IRegistrationFormProps } from './RegistrationForm.types';
+import { useContext } from 'react';
 import TEXTNODES from '../../constants/textConstants';
 import {
   Form, FormTitle, Label, Input, InputLast, Button, TextBottom, InputConfirm,
@@ -7,12 +8,14 @@ import { ButtonBottom, TextReset } from './ResetPasswordForm.styled';
 // import { Link } from 'react-router-dom';
 
 import IResetPasswordFromProps from './ResetPasswordFrom.types';
+import ThemeContext from '../../utils/Context';
 
 export default function ResetPasswordFrom({ type }: IResetPasswordFromProps) {
+  const { theme } = useContext(ThemeContext);
   return (
     <Form>
       <FormTitle>{TEXTNODES.RESET_PASSWORD}</FormTitle>
-      {type === 'reset2' && <TextReset>You will receive an email example@gmail.com with a link to reset your password!</TextReset>}
+      {type === 'reset2' && <TextReset theme={theme === 'dark'}>You will receive an email example@gmail.com with a link to reset your password!</TextReset>}
       {(type === 'reset1' || type === 'reset2') && (
         <>
           <Label htmlFor={TEXTNODES.EMAIL}>{TEXTNODES.EMAIL}</Label>
