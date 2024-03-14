@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-export const Overlay = styled.div`
+const Overlay = styled.div`
     width: 100vw;
   height: 100vh;
   position: fixed;
@@ -13,3 +13,5 @@ export const Overlay = styled.div`
   visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 100;
 `;
+
+export default Overlay;

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 import colors from '../../constants/colorConstants';
+import { IRatingProps } from './Movie.types';
 
 export const MovieWrap = styled.li`
     flex-basis: calc((100% - 4*40px) / 5);
@@ -9,16 +10,9 @@ export const MovieWrap = styled.li`
 `;
 
 export const ImgWrap = styled(NavLink)`
-/* display: block;
-    width: 266px;
-    height: 357px;
-    overflow: hidden;
-    margin-bottom: 24px;
-    border-radius: 20px; */
 `;
 
 export const MovieImg = styled.img`
-    /* max-width: 266px; */
     width: 100%;
      border-radius: 20px; 
     margin: 0;
@@ -29,7 +23,7 @@ export const Title = styled.h2`
     font-weight: 700;
     margin-top: 24px;
     margin-bottom: 4px;
-    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
+    color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
 
 export const GenreList = styled.ul`
@@ -43,11 +37,10 @@ margin: 0;
 export const GenteItem = styled.li`
     display: flex;
     align-items: center;
-     color: ${(props) => props.theme && `${colors.contextualColors.light}`}
-    
+     color: ${({ theme }) => theme && `${colors.contextualColors.light}`};
 `;
 
-export const Rating = styled.span`
+export const Rating = styled.span<IRatingProps>`
     position: absolute;
     top: 20px;
     left: 20px;

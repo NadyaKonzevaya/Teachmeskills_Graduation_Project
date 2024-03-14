@@ -1,10 +1,4 @@
-import { IAuthState } from './auth/authSlice';
-import { IMoviesState } from './movies/MoviesSlice';
-
-interface IState {
-  movies: IMoviesState;
-  auth: IAuthState;
-}
+import { IState } from './interfaces';
 
 export const getMoviesSelector = (state: IState) => state.movies.items;
 export const getFavoriteMoviesSelector = (state: IState) => state.movies.favorites;

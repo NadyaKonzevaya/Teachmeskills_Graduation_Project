@@ -1,14 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn } from './operations';
-
-export interface IAuthState {
-  isLoggedIn?: boolean;
-  user: {
-    id: number, username: string, email: string, course_group?: number } | null;
-  tokens: { access: string, refresh: string } | null;
-  isRefreshing: boolean;
-  error: string | null;
-}
+import { IAuthState } from '../interfaces';
 
 const initialState: IAuthState = {
   isLoggedIn: false,

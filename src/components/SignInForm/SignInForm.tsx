@@ -38,7 +38,7 @@ export default function SignInForm() {
       <Label theme={theme === 'dark'} htmlFor={TEXTNODES.EMAIL}>{TEXTNODES.EMAIL}</Label>
       <Input theme={theme === 'dark'} type="email" name="email" id={TEXTNODES.EMAIL} placeholder="Your email" />
       <Label theme={theme === 'dark'} htmlFor={TEXTNODES.PASSWORD}>{TEXTNODES.PASSWORD}</Label>
-      <InputLast  theme={theme === 'dark'} type="password" name="password" id={TEXTNODES.PASSWORD} placeholder="Your password" />
+      <InputLast theme={theme === 'dark'} type="password" name="password" id={TEXTNODES.PASSWORD} placeholder="Your password" />
       <Text>{TEXTNODES.FORGOT_PASSWORD}</Text>
       <Button type="submit" theme={theme === 'dark'}>{TEXTNODES.SIGN_IN}</Button>
       <TextBottom>

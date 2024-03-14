@@ -15,7 +15,6 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const LogoBlack = styled(Logo)`
-    /* margin-right: 146px;     */
 `;
 
 export const SearchBarWrap = styled.div`
@@ -30,10 +29,9 @@ box-sizing: border-box;
     padding-left: 20px;
     padding-right: 20px;
     height: 56px;
-    /* max-width: 1184px; */
     width: 100%;
-    background-color: ${(props) => props.theme && `${colors.backgroundColors.graphite}`};
-    border:  ${(props) => !props.theme && `2px solid ${colors.contextualColors.light}`}; ;
+    background-color: ${({ theme }) => theme && `${colors.backgroundColors.graphite}`};
+    border:  ${({ theme }) => theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 10px;
     font-size: 16px;
 `;

@@ -1,32 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import {
+  IRegisterPayload, ISignInPayload, RegistrationPayload, SignInPayload,
+} from '../interfaces';
 
 axios.defaults.baseURL = 'https://studapi.teachmeskills.by';
-
-interface IRegisterPayload {
-  id: number,
-  username: string,
-  email: string,
-  course_group: number,
-}
-
-interface RegistrationPayload {
-  username: string,
-  email: string,
-  password: string,
-  course_group: number,
-}
-
-interface ISignInPayload {
-  access: string,
-  refresh: string,
-}
-
-interface SignInPayload {
-  id?: number,
-  email: string,
-  password: string,
-}
 
 export const register = createAsyncThunk<IRegisterPayload, RegistrationPayload, {
   rejectValue: string

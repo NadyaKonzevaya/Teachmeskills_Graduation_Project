@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -9,25 +9,16 @@ import TEXTNODES from '../../constants/textConstants';
 import ThemeContext from '../../utils/Context';
 
 export default function Settings() {
-  const [checked, setChecked] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
+  const [checked, setChecked] = useState(theme === 'dark');
   const navigate = useNavigate();
-  console.log(theme);
-  
-
-  useEffect(() => {
-    const storedChecked = localStorage.getItem('checked');
-    if (storedChecked !== null) {
-      setChecked(JSON.parse(storedChecked));
-    }
-  }, []);
 
   const toggleCheck = () => {
     setChecked(!checked);
-    localStorage.setItem('checked', JSON.stringify(!checked));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (checked) {
       setTheme('dark');
     } else {

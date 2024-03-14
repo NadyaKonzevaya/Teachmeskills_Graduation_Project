@@ -1,28 +1,34 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { ShowMoreButton, MainWrapper } from './MainMovieList.styled';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchMoreMovies } from '../../redux/movies/operations';
+import { fetchMoreMovies, fetchMovies } from '../../redux/movies/operations';
 import { getIsLoadingSelector, getMoviesSelector } from '../../redux/selectors';
 import { genres } from '../../utils/constants';
 import { Loading } from '../Loading';
-import { getMoviesWithUpdatedGenres } from '../../utils/formateDataFromBackEnd';
+import { getMoviesWithUpdatedGenres } from '../../utils/helperFunctions';
 import TEXTNODES from '../../constants/textConstants';
 import GeneralMovieList from '../GeneralMovieList/GeneralMovieList';
 import ThemeContext from '../../utils/Context';
 
 export default function MainMovieList() {
-  const [page, setPage] = useState(2);
   const dispatch = useAppDispatch();
   const movies = useAppSelector(getMoviesSelector);
   const isLoading = useAppSelector(getIsLoadingSelector);
   const { theme } = useContext(ThemeContext);
-  
-  // useEffect(() => { }, []);
-  const moviesUpdated = useMemo(() => getMoviesWithUpdatedGenres(movies, genres), [movies]);
-  const handleFetchMoreMovies = () => {
-    dispatch(fetchMoreMovies({ page })).then(setPage(page + 1));
-  };
 
+  useEffect(() => {
+    if (!movies.length) {
+      dispatch(fetchMovies());
+    }
+  }, [dispatch, movies.length]);
+
+  const moviesUpdated = useMemo(() => getMoviesWithUpdatedGenres(movies, genres), [movies]);
+
+  const handleFetchMoreMovies = () => {
+    const pageNum = Math.floor(movies.length / 20) + 1;
+    dispatch(fetchMoreMovies({ page: pageNum })).then(() => {
+    });
+  };
   return (
     <MainWrapper>
       <GeneralMovieList movieList={moviesUpdated} />

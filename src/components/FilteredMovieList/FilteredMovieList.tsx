@@ -6,7 +6,7 @@ import { genres } from '../../utils/constants';
 import { Movie } from '../Movie';
 import { Loading } from '../Loading';
 import { fetchMoreMovies } from '../../redux/movies/operations';
-import { getMoviesWithUpdatedGenres } from '../../utils/formateDataFromBackEnd';
+import { getMoviesWithUpdatedGenres } from '../../utils/helperFunctions';
 import TEXTNODES from '../../constants/textConstants';
 
 export default function FilteredMovieList() {

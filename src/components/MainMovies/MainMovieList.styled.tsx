@@ -6,7 +6,6 @@ export const MoviesWrapper = styled.ul`
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-    
     list-style: none;
     margin-bottom: 64px;
 `;
@@ -19,8 +18,8 @@ export const ShowMoreButton = styled.button`
     width: 160px;
     height: 40px;
     border-radius: 40px;
-    background-color: ${(props) => props.theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.light}`};
-    color: ${(props) => props.theme && `${colors.contextualColors.white}`};
+    background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.light}`)};
+    color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
     margin-left: auto;
     margin-right: auto;
 `;

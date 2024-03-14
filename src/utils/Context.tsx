@@ -1,11 +1,7 @@
 import { createContext } from 'react';
+import { IThemeContext } from '../redux/interfaces';
 
 export type THEME = 'light' | 'dark';
-
-interface IThemeContext {
-  theme: THEME;
-  setTheme: (theme: THEME) => void;
-}
 
 const ThemeContext = createContext<IThemeContext>({ theme: 'light', setTheme: () => { } });
 

@@ -7,24 +7,25 @@ import {
   FormButton, TitleWrap, StyledLink,
 } from './Filters.styled';
 import { useAppDispatch } from '../../redux/hooks';
-import { IParams, fetchMoviesByParams, fetchMoviesByQuery } from '../../redux/movies/operations';
+import { fetchMoviesByParams, fetchMoviesByQuery } from '../../redux/movies/operations';
 import { genres } from '../../utils/constants';
 import TEXTNODES from '../../constants/textConstants';
-import Select from '../Select/Select';
+import { Select } from '../Select';
 import { filterMoviesByRating } from '../../redux/movies/MoviesSlice';
+import { IParams } from '../../redux/interfaces';
+import ThemeContext from '../../utils/Context';
 
 export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
+  const { theme } = useContext(ThemeContext);
   const [sortIsChecked, setSortIsChecked] = useState('Year');
   const [params, setParams] = useState<IParams>({});
   const [query, setQuery] = useState<string>('');
   const genresValue = Object.values(genres);
   const [genresInFilter, setGenresInFilter] = useState<string[]>(genresValue);
   const [years, setYears] = useState({ start: '', end: '' });
-  const [rating, setRating] = useState({ start: 0, end: 10 });
+  const [rating, setRating] = useState({ start: '', end: '' });
   const [country, setCountry] = useState('Select country');
   const dispatch = useAppDispatch();
-  console.log(years);
-  console.log(params);
 
   useEffect(() => {
     const yearsQuery = [];
@@ -36,9 +37,9 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
       return;
     }
     setParams({ ...params, year: yearsQueryToString });
-  }, [years.start, years.end]);
+  }, [years.start, years.end, params]);
 
-  const setCheckedInput = (e) => {
+  const setCheckedInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSortIsChecked(e.target.value);
     if (e.target.value === 'Rating') {
       setParams({
@@ -54,7 +55,7 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
     handleIsOpen(false);
   };
 
-  const setTitleQuery = (e) => {
+  const setTitleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
@@ -66,25 +67,14 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
     setParams({ ...params, genres: genresCodesToString });
   };
 
-  const setYearQuery = (e) => {
+  const setYearQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'yearStart') {
       setYears({ ...years, start: e.target.value });
     } else if (e.target.name === 'yearEnd') {
       setYears({ ...years, end: e.target.value });
     }
-    // const start = Number(years.start);
-    // const end = Number(years.end);
-    // const yearsQuery = [];
-    // for (let i = Number(years.start); i <= Number(years.end); i += 1) {
-    //   yearsQuery.push(i);
-    // }
-    // console.log(yearsQuery);
-    // const yearsQueryToString = yearsQuery.join('|');
-    // console.log(yearsQueryToString);
-    // setParams({ ...params, year: yearsQueryToString });
-    // setParams({ ...params, year: e.target.value });
   };
-  const setRatingValue = (e) => {
+  const setRatingValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'ratingStart') {
       setRating({ ...rating, start: e.target.value });
     } else if (e.target.name === 'ratingEnd') {
@@ -104,7 +94,7 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
     setGenresInFilter(genresValue);
     setYears({ start: '', end: '' });
     setCountry('Select country');
-    setRating({ start: 0, end: 0 });
+    setRating({ start: '', end: '' });
   };
 
   const handleSubmit = (e) => {
@@ -118,63 +108,61 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
         dispatch(filterMoviesByRating(rating));
       }
     });
-
     handleIsOpen(false);
   };
 
   return (
     isOpen && (
-      <Container>
+      <Container theme={theme === 'dark'}>
         <Form>
           <TitleWrap>
-            <Title>{TEXTNODES.FILTERS}</Title>
-            <CrossButton type="button" onClick={handleClose}><IoMdClose /></CrossButton>
+            <Title theme={theme === 'dark'}>{TEXTNODES.FILTERS}</Title>
+            <CrossButton theme={theme === 'dark'} type="button" onClick={handleClose}><IoMdClose /></CrossButton>
           </TitleWrap>
           <Wrap>
-            <LabelTitle>{TEXTNODES.SORT_BY}</LabelTitle>
-            <RadioLabelLeft htmlFor={TEXTNODES.RATING} checked={sortIsChecked === 'Rating'}>{TEXTNODES.RATING}</RadioLabelLeft>
-            <RadioInput type="radio" name="sorting" value={TEXTNODES.RATING} id={TEXTNODES.RATING} onChange={setCheckedInput} />
-            <RadioLabelRight htmlFor={TEXTNODES.YEAR} checked={sortIsChecked === 'Year'}>{TEXTNODES.YEAR}</RadioLabelRight>
-            <RadioInput type="radio" name="sorting" value={TEXTNODES.YEAR} id={TEXTNODES.YEAR} onChange={setCheckedInput} />
+            <LabelTitle theme={theme === 'dark'}>{TEXTNODES.SORT_BY}</LabelTitle>
+            <RadioLabelLeft theme={theme === 'dark'} htmlFor={TEXTNODES.RATING} checked={sortIsChecked === 'Rating'}>{TEXTNODES.RATING}</RadioLabelLeft>
+            <RadioInput theme={theme === 'dark'} type="radio" name="sorting" value={TEXTNODES.RATING} id={TEXTNODES.RATING} onChange={setCheckedInput} />
+            <RadioLabelRight theme={theme === 'dark'} htmlFor={TEXTNODES.YEAR} checked={sortIsChecked === 'Year'}>{TEXTNODES.YEAR}</RadioLabelRight>
+            <RadioInput theme={theme === 'dark'} type="radio" name="sorting" value={TEXTNODES.YEAR} id={TEXTNODES.YEAR} onChange={setCheckedInput} />
           </Wrap>
           <InputWrap>
-            <Label htmlFor="title">{TEXTNODES.FULL_OR_SHOT_MOVIE_NAME}</Label>
-            <Input type="text" id="title" placeholder="Your text" onChange={setTitleQuery} value={query} />
+            <Label theme={theme === 'dark'} htmlFor="title">{TEXTNODES.FULL_OR_SHOT_MOVIE_NAME}</Label>
+            <Input theme={theme === 'dark'} type="text" id="title" placeholder="Your text" onChange={setTitleQuery} value={query} />
           </InputWrap>
-          <Label htmlFor={TEXTNODES.GENRES}>{TEXTNODES.GENRES}</Label>
-          <GenresWrap>
+          <Label theme={theme === 'dark'} htmlFor={TEXTNODES.GENRES}>{TEXTNODES.GENRES}</Label>
+          <GenresWrap theme={theme === 'dark'}>
             { genresInFilter.map((genre) => (
-              <Genre key={genre[0]}>
+              <Genre theme={theme === 'dark'} key={genre[0]}>
                 {genre[1]}
-                <CrossButton type="button" onClick={() => closeGenre(genre)}><IoMdClose /></CrossButton>
+                <CrossButton theme={theme === 'dark'} type="button" onClick={() => closeGenre(genre)}><IoMdClose /></CrossButton>
               </Genre>
             ))}
           </GenresWrap>
           <InputWrap>
-            <Label htmlFor={TEXTNODES.YEARS}>{TEXTNODES.YEARS}</Label>
+            <Label theme={theme === 'dark'} htmlFor={TEXTNODES.YEARS}>{TEXTNODES.YEARS}</Label>
             <FromToWrap>
-              <InputFromTo type="number" id={TEXTNODES.YEARS} placeholder="From" name="yearStart" onChange={setYearQuery} value={years.start} />
-              <InputFromTo type="number" id="years_" placeholder="To" name="yearEnd" onChange={setYearQuery} value={years.end} />
+              <InputFromTo theme={theme === 'dark'} type="number" id={TEXTNODES.YEARS} placeholder="From" name="yearStart" onChange={setYearQuery} value={years.start} />
+              <InputFromTo theme={theme === 'dark'} type="number" id="years_" placeholder="To" name="yearEnd" onChange={setYearQuery} value={years.end} />
             </FromToWrap>
           </InputWrap>
           <InputWrap>
-            <Label htmlFor="rating2">{TEXTNODES.RATING}</Label>
+            <Label theme={theme === 'dark'} htmlFor="rating2">{TEXTNODES.RATING}</Label>
             <FromToWrap>
-              <InputFromTo type="number" id="rating2" placeholder="From" onChange={setRatingValue} name="ratingStart" value={rating.start} />
-              <InputFromTo type="number" id="rating2_" placeholder="To" onChange={setRatingValue} name="ratingEnd" value={rating.end} />
+              <InputFromTo theme={theme === 'dark'} type="number" id="rating2" placeholder="From" onChange={setRatingValue} name="ratingStart" value={rating.start} />
+              <InputFromTo theme={theme === 'dark'} type="number" id="rating2_" placeholder="To" onChange={setRatingValue} name="ratingEnd" value={rating.end} />
             </FromToWrap>
           </InputWrap>
           <InputWrap>
-            <Label htmlFor={TEXTNODES.COUNTRY}>{TEXTNODES.COUNTRY}</Label>
+            <Label theme={theme === 'dark'} htmlFor={TEXTNODES.COUNTRY}>{TEXTNODES.COUNTRY}</Label>
             <Select onChange={setCountryQuery} value={country} setValue={setCountry} />
           </InputWrap>
           <FromToWrap>
-            <FormButton type="button" onClick={clearFilters}>{TEXTNODES.CLEAR_FILTERS}</FormButton>
-            <FormButton type="submit" onClick={handleSubmit}>
+            <FormButton theme={theme === 'dark'} type="button" onClick={clearFilters}>{TEXTNODES.CLEAR_FILTERS}</FormButton>
+            <FormButton theme={theme === 'dark'} type="submit" onClick={handleSubmit}>
               <StyledLink to="sorting">{TEXTNODES.SHOW_RESULTS}</StyledLink>
             </FormButton>
           </FromToWrap>
-
         </Form>
       </Container>
     )

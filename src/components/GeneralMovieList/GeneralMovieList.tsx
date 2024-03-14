@@ -1,15 +1,10 @@
-import { IMovie } from '../../redux/movies/MoviesSlice';
 import { MoviesWrapper } from '../MainMovies/MainMovieList.styled';
 import { Movie } from '../Movie';
-
-interface IGeneralMovieListProps {
-  movieList: IMovie[];
-}
+import IGeneralMovieListProps from './GeneralMovieList.types';
 
 export default function GeneralMovieList({ movieList }: IGeneralMovieListProps) {
   return (
     <MoviesWrapper>
-      {/* {type === 'filtered' && <span>Thriller</span>} */}
       {!!movieList.length && (
         movieList.map(({
           id, poster_path, title, genre_ids, vote_average,

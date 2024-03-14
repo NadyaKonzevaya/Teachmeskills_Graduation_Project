@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense, useContext, useEffect, useState } from 'react';
+import {
+  Suspense, useContext, useEffect, useState,
+} from 'react';
 import {
   Aside, BackgroundMain, BookmarkElement, CopyRightMain, HomeElement, MainContainerWrap,
   NavItem, NavMenu, NavText, SettingsElement, TrendsElement,
@@ -10,10 +12,6 @@ import { fetchMovies } from '../../redux/movies/operations';
 import TEXTNODES from '../../constants/textConstants';
 import ThemeContext from '../../utils/Context';
 
-export interface IMainSharedLayoutProps {
-  changeQueryString: (queryString: string) => void;
-}
-
 const NavItems = [
   [HomeElement, TEXTNODES.HOME, '/movies'],
   [TrendsElement, TEXTNODES.TRENDS, '/movies/trends'],
@@ -21,7 +19,7 @@ const NavItems = [
   [SettingsElement, TEXTNODES.SETTINGS, '/movies/settings'],
 ];
 
-export default function MainSharedLayout({ changeQueryString }: IMainSharedLayoutProps) {
+export default function MainSharedLayout() {
   const { theme } = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const [activeLink, setActiveLink] = useState(TEXTNODES.HOME);
@@ -32,7 +30,7 @@ export default function MainSharedLayout({ changeQueryString }: IMainSharedLayou
 
   return (
     <BackgroundMain theme={theme === 'dark'}>
-      <Header changeQueryString={changeQueryString} />
+      <Header />
       <MainContainerWrap>
         <Aside>
           <NavMenu>

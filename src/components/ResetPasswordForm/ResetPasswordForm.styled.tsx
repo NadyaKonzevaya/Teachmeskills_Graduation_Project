@@ -8,5 +8,5 @@ export const ButtonBottom = styled(Button)`
 
 export const TextReset = styled(Text)`
   font-size: 16px;
-  color: ${(props) => props.theme && `${colors.contextualColors.white}`}
+  color: ${({ theme }) => theme && `${colors.contextualColors.white}`}
 `;

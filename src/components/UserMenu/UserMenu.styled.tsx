@@ -4,15 +4,8 @@ import colors from '../../constants/colorConstants';
 
 export const UserMenuWrap = styled.div`
     margin-left: 41px;
-     display: flex;
-  /* height: 84px; */
-  /* gap: 16px; */
-  /* padding: 0 31px; */
-  /* color: #ffffff; */
-  align-items: center;
-  /* background-color: #2231aa; */
-  /* border-top: 1px solid #5360cd; */
-  /* box-sizing: border-box; */
+    display: flex;
+    align-items: center;
 `;
 
 export const Letters = styled.p`
@@ -24,7 +17,6 @@ export const Letters = styled.p`
   background-color: ${colors.systemColors.primary};
   font-size: 20px;
   font-weight: 700;
-  /* margin: 0; */
   border-radius: 10px;
   color: ${colors.contextualColors.white};
 `;
@@ -33,14 +25,14 @@ export const Name = styled.p`
     font-weight: 600;
     margin-left: 20px;
     margin-right: 51px;
-    color: ${(props) => props.theme && `${colors.contextualColors.white}`}
+    color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
 
 export const MdKeyboardArrowDownElement = styled(MdKeyboardArrowDown)`
     width: 20px;
     height: 20px;
     /* height: 10px; */
-    fill: ${colors.contextualColors.light}
+    fill: ${colors.contextualColors.light};
 `;
 
 export const Button = styled.button`

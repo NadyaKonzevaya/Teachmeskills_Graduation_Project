@@ -1,25 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import qs from 'querystring';
-// import { IAllCard, IMyCard, ISearchProps } from '../../components/Card/Card.types';
-import { API_KEY, BASE_URL } from '../../utils/constants';
-import { IActor, IMovie } from './MoviesSlice';
-// import api from '../api';
+import { BASE_URL, API_KEY } from '../../utils/constants';
+import { IActor, IMovie, IParams } from '../interfaces';
 
-export interface IParams {
-  sortingBy?: string,
-  minVotes?: number,
-  page?: number,
-  query?: string,
-  title?: string,
-  genres?: string,
-  year?: string,
-  country?: string,
-  // year: number,
-  // title: string,
-  // genres: string[],
-  // country: string[],
-}
+// API_KEY = process.env.API_KEY
 
 export const fetchMovies = createAsyncThunk<IMovie[], void, { rejectValue: string }>('movies/fetchMovies', async (_, { rejectWithValue }) => {
   try {
@@ -96,5 +80,3 @@ export const fetchMoviesByQuery = createAsyncThunk<IMovie[], string, { rejectVal
     return rejectWithValue(error.message);
   }
 });
-
-

@@ -8,14 +8,13 @@ import '../index.css';
 import ThemeContext, { THEME } from '../utils/Context';
 
 export default function RootComponent() {
-  const [theme, setTheme] = useState<THEME>('dark');
-  const themeMemo = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
+  const [theme, setTheme] = useState<THEME>('light');
   return (
     <React.StrictMode>
       <BrowserRouter>
         <Provider store={store}>
           <PersistGate persistor={persistor} loading={null}>
-            <ThemeContext.Provider value={themeMemo}>
+            <ThemeContext.Provider value={useMemo(() => ({ theme, setTheme }), [theme, setTheme])}>
               <App />
             </ThemeContext.Provider>
           </PersistGate>

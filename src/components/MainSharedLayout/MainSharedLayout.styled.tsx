@@ -5,11 +5,12 @@ import {
 } from 'react-icons/ri';
 import colors from '../../constants/colorConstants';
 import { CopyRight } from '../RegistrationSharedLayout/RegistrationSharedLayout.styled';
+import INavItemProps from './MainSharedLayout.types';
 
 export const BackgroundMain = styled.div`
     margin: 0;
     background-color: ${colors.contextualColors.white};
-    background-color: ${(props) => (props.theme ? `${colors.backgroundColors.black}` : `${colors.contextualColors.white}`)};
+    background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.black}` : `${colors.contextualColors.white}`)};
     min-height: 100vh;
     display: grid;
     grid-template: minmax(136px, auto) 1fr / 1fr;
@@ -19,10 +20,8 @@ export const BackgroundMain = styled.div`
 export const MainContainerWrap = styled.div`
     grid-area: main;
     display: grid;
-    /* grid-template: 1fr / minmax(auto, 306px) 1fr; */
     grid-template-rows: 1fr auto; 
     grid-template-columns: minmax(auto, 306px) minmax(266px, auto) 1fr minmax(auto, 305px);
-    /* padding-left: 62px; */
     padding-right: 62px;
     padding-bottom: 64px;
 `;
@@ -43,12 +42,11 @@ export const NavMenu = styled.nav`
    
 `;
 
-export const NavItem = styled(Link)`
+export const NavItem = styled(Link)<INavItemProps>`
     display: flex;
     align-items: center;
     gap: 20px;
-    /* color: ${colors.systemColors.secondary}; */
-    color: ${(props) => (props.active === 'true' ? '#7B61FF' : '#80858B')};
+    color: ${({ active }) => (active === 'true' ? `${colors.systemColors.primary}` : `${colors.systemColors.secondary}`)};
 `;
 
 export const NavText = styled.p`

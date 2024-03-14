@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { LuDot } from 'react-icons/lu';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { getFavoriteMoviesSelector, getMovieDetailsSelector } from '../../redux/selectors';
+import { getMovieDetailsSelector } from '../../redux/selectors';
 import { IMAGE_BASE_URL } from '../../utils/constants';
 import { BookmarkElement } from '../MainSharedLayout/MainSharedLayout.styled';
 import {
@@ -11,7 +11,7 @@ import {
 } from './MovieDetails.styled';
 import { fetchCastMovieDetails, fetchMovieDetails, fetchRecommendsMovieDetails } from '../../redux/movies/operations';
 import { GenreList, GenteItem } from '../Movie/Movie.styled';
-import { formateDate } from '../../utils/formateDataFromBackEnd';
+import { formateDate, getNamesOfMovieProperties } from '../../utils/helperFunctions';
 import { Recommendations } from '../Recommendations';
 import TEXTNODES from '../../constants/textConstants';
 import { toggleIsFavorite } from '../../redux/movies/MoviesSlice';
@@ -21,63 +21,23 @@ export default function MovieDetails() {
   const { theme } = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const movie = useAppSelector(getMovieDetailsSelector);
-  console.log(movie?.isFavorite);
-
-  // const favorites = useAppSelector(getFavoriteMoviesSelector);
   const rating = useMemo(() => (movie ? Math.round(movie.vote_average * 10) / 10 : 0), [movie]);
   const formatedBudget = useMemo(() => (movie ? movie.budget.toLocaleString() : 0), [movie]);
   const { movieId } = useParams();
 
   useEffect(() => {
-    // console.log('useEffect');
-    //     const fetchAllMovieDetails = async () => {
-    //   try {
-    //     const storedMovie = localStorage.getItem('movies');
-    //     console.log(storedMovie);
+    if (!movie || movie.id !== Number(movieId)) {
+      dispatch(fetchMovieDetails(Number(movieId)));
+    } else if (!movie.actors) {
+      dispatch(fetchCastMovieDetails(Number(movieId)));
+    } else if (!movie.recommendations) {
+      dispatch(fetchRecommendsMovieDetails(Number(movieId)));
+    }
+  }, [dispatch, movie, movieId]);
 
-    //     if (storedMovie) {
-    //       // dispatch(setMovieDetails(storedMovie));
-    //     } else {
-    //       await Promise.all([
-    //         dispatch(fetchMovieDetails(Number(movieId))),
-    //         dispatch(fetchCastMovieDetails(Number(movieId))),
-    //         dispatch(fetchRecommendsMovieDetails(Number(movieId))),
-    //       ]);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-    if (!movie) {
-      const fetchAllMovieDetails = async () => {
-        try {
-          await Promise.all([
-            dispatch(fetchMovieDetails(Number(movieId))),
-            dispatch(fetchCastMovieDetails(Number(movieId))),
-            dispatch(fetchRecommendsMovieDetails(Number(movieId))),
-          ]);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-      fetchAllMovieDetails();
-    }
-  }, [movieId, movie, movie?.isFavorite, dispatch]);
+  const countries = useMemo(() => getNamesOfMovieProperties(movie, movie.production_countries), []);
 
-  const countries = useMemo(() => {
-    const list = movie ? movie.production_countries.map((country) => country.name) : null;
-    if (list?.length === 1) {
-      return list;
-    }
-    return list?.join(', ');
-  }, [movie]);
-  const productions = useMemo(() => {
-    const list = movie ? movie.production_companies.map((production) => production.name) : null;
-    if (list?.length === 1) {
-      return list;
-    }
-    return list?.join(', ');
-  }, [movie]);
+  const productions = useMemo(() => getNamesOfMovieProperties(movie, movie.production_companies), []);
 
   const mainActors = useMemo(() => {
     const list = movie ? movie.actors : null;
@@ -89,18 +49,17 @@ export default function MovieDetails() {
   };
 
   return (
-    movie && movie.actors && movie.recommendations && (
+    movie && !!movie.actors && !!movie.recommendations && (
       <>
-        {/* <MovieWrap> */}
         <LeftSide>
           <ImageWrap>
             <Image src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
           </ImageWrap>
           <ReactionWrap>
-            <ReactionBtn onClick={() => toggleFavorite(movie.id)} isFavorite={movie.isFavorite}>
+            <ReactionBtn theme={theme === 'dark'} onClick={() => toggleFavorite(movie.id)} isFavorite={movie.isFavorite}>
               <BookmarkElement />
             </ReactionBtn>
-            <ReactionBtn>
+            <ReactionBtn theme={theme === 'dark'}>
               <ShareElement />
             </ReactionBtn>
           </ReactionWrap>
@@ -146,13 +105,8 @@ export default function MovieDetails() {
             <Value theme={theme === 'dark'}>{productions}</Value>
             <PropertyName theme={theme === 'dark'}>{TEXTNODES.ACTORS}</PropertyName>
             <Value theme={theme === 'dark'}>{mainActors}</Value>
-            {/* <PropertyName>
-          Director:
-          <Value />
-        </PropertyName> */}
           </PropertyWrap>
         </RightSide>
-        {/* </MovieWrap> */}
         <Recommendations />
       </>
     )

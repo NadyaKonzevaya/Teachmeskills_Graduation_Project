@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import colors from '../../constants/colorConstants';
+import ReactionBtnProps from './MovieDetails.types';
+import { IRatingProps } from '../Movie/Movie.types';
 
 export const MovieWrap = styled.div`
     display: flex;
@@ -29,26 +31,18 @@ export const ReactionWrap = styled.div`
     width: 100%;
 
 `;
-interface ReactionBtnProps {
-  isFavorite: boolean;
-}
 
 export const ReactionBtn = styled.button<ReactionBtnProps>`
 width: 49%;
 height: 56px;
 margin-right: 2px;
-border: 2px solid ${colors.contextualColors.light};
-background-color: ${colors.contextualColors.white};
+border: ${({ theme }) => !theme && `2px solid ${colors.contextualColors.light}`};
+background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.white}`)};
 color: ${colors.contextualColors.light};
 display: inline-flex;
 align-items: center;
 justify-content: center;
-color: ${(props) => (props.isFavorite ? '#7B61FF' : '#AFB2B6')};
-
-/* &:hover, &:focus {
-    color: ${colors.systemColors.primary};
-    border: 2px solid ${colors.contextualColors.primary}; */
-/* } */
+color: ${({ isFavorite }) => (isFavorite ? `${colors.systemColors.primary}` : `${colors.contextualColors.light}`)};
 `;
 
 export const ShareElement = styled(IoShareSocialOutline)`
@@ -63,7 +57,7 @@ export const RightSide = styled.div`
 export const Title = styled.h2`
   margin-top: 10px;
   margin-bottom: 24px;
-  color: ${(props) => props.theme && `${colors.contextualColors.white}`}
+  color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
 
 export const RatingWrap = styled.div`
@@ -72,7 +66,7 @@ export const RatingWrap = styled.div`
     margin-bottom: 40px;
 `;
 
-export const Rating = styled.span`
+export const Rating = styled.span<IRatingProps>`
     width: 37px;
     height: 28px;
     color: ${colors.contextualColors.white};
@@ -99,7 +93,7 @@ export const Rating = styled.span`
 export const ImdbRating = styled.span`
     width: 79px;
     height: 28px;
-    background-color: ${(props) => props.theme ? `${colors.backgroundColors.graphite}` : ` ${colors.contextualColors.light}`};
+    background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.graphite}` : ` ${colors.contextualColors.light}`)};
     color: ${colors.contextualColors.white};
     display: flex;
     justify-content: center;
@@ -110,18 +104,18 @@ export const ImdbRating = styled.span`
 export const Text = styled.p`
 margin-top: 0;
     margin-bottom: 40px;
-    color: ${(props) => props.theme && `${colors.contextualColors.white}`}
+    color: ${({ theme }) => theme && `${colors.contextualColors.white}`}
 `;
 
 export const PropertyName = styled.p`
 /* margin-bottom: 20px; */
 font-weight: 600;
 margin: 0;
-color: ${(props) => props.theme && `${colors.contextualColors.light}`}
+color: ${({ theme }) => theme && `${colors.contextualColors.light}`}
     `;
 export const Value = styled.span`
     font-weight: 500;
-    color: ${(props) => props.theme && `${colors.contextualColors.white}`}
+    color: ${({ theme }) => theme && `${colors.contextualColors.white}`}
 `;
 
 export const PropertyWrap = styled.div`

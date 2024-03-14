@@ -1,5 +1,5 @@
 import { LuDot } from 'react-icons/lu';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import {
   GenreList, GenteItem, ImgWrap, MovieImg, MovieWrap, Rating, Title,
 } from './Movie.styled';
@@ -13,6 +13,7 @@ export default function Movie({
 }) {
   const { theme } = useContext(ThemeContext);
   const dispatch = useAppDispatch();
+  const votesCalculated = useMemo(() => Math.round(vote_average * 10) / 10, [vote_average]);
   const handleClick = async () => {
     try {
       await Promise.all([
@@ -32,16 +33,14 @@ export default function Movie({
       </ImgWrap>
       <Title theme={theme === 'dark'}>{title}</Title>
       <GenreList>
-        {genreNames.map((genre) => {
-          return (
-            <GenteItem key={genre[0]}>
-              {genre[1]}
-              <LuDot />
-            </GenteItem>
-          );
-        })}
+        {genreNames.map((genre) => (
+          <GenteItem key={genre[0]}>
+            {genre[1]}
+            <LuDot />
+          </GenteItem>
+        ))}
       </GenreList>
-      <Rating rating={vote_average}>{Math.round(vote_average * 10) / 10}</Rating>
+      <Rating rating={vote_average}>{votesCalculated}</Rating>
     </MovieWrap>
   );
 }

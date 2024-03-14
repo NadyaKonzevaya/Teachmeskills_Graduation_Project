@@ -27,14 +27,3 @@ export default function UserMenu() {
     </UserMenuWrap>
   );
 }
-
-// export default function UserName() {
-//   const username = useAppSelector(getUserNameSelector);
-//   const firstLetters = `${username.slice(0, 2).toUpperCase()}`;
-//   return (
-//     <div className={styles.name_wrap}>
-//       <p className={styles.letters}>{ firstLetters }</p>
-//       <p className={styles.name}>{ username }</p>
-//     </div>
-//   );
-// }
