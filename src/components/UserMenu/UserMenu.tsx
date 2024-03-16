@@ -11,19 +11,19 @@ export default function UserMenu() {
   const { theme } = useContext(ThemeContext);
   const user = useAppSelector(getUserSelector);
   const letters = user?.slice(0, 2).toUpperCase();
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const handleClick = () => {
-    setIsFiltersOpen(true);
-  };
+  //  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  // const handleClick = () => {
+  //   setIsFiltersOpen(true);
+  // };
 
   return (
     <UserMenuWrap>
       <Letters>{letters}</Letters>
       <Name theme={theme === 'dark'}>{user}</Name>
-      <Button type="button" onClick={handleClick} aria-label="Filters">
+      <Button type="button" aria-label="Filters">
         <MdKeyboardArrowDownElement />
       </Button>
-      {isFiltersOpen && (<Backdrop isOpen={isFiltersOpen} handleIsOpen={setIsFiltersOpen} />)}
+      {/* {isFiltersOpen && (<Backdrop isOpen={isFiltersOpen} handleIsOpen={setIsFiltersOpen} />)} */}
     </UserMenuWrap>
   );
 }

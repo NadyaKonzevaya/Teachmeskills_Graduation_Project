@@ -38,7 +38,11 @@ export const moviesSlice = createSlice({
       state.currentMovie = state.items.find((movie) => movie.id === action.payload);
     },
     filterMoviesByRating: (state, action) => {
-      state.items = state.items.filter(({ vote_average }) => vote_average >= action.payload.start && vote_average <= action.payload.end);
+      const start = Number(action.payload.start);
+      const end = Number(action.payload.end);
+      console.log(start, end);
+      
+      state.items = state.items.filter(({ vote_average }) => vote_average >= start && vote_average <= end);
     },
   },
   extraReducers: (builder) => builder

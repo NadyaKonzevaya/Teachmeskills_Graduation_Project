@@ -3,8 +3,9 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import colors from '../../constants/colorConstants';
 
 export const UserMenuWrap = styled.div`
+display: none;
     margin-left: 41px;
-    display: flex;
+    /* display: flex; */
     align-items: center;
 `;
 
@@ -36,6 +37,7 @@ export const MdKeyboardArrowDownElement = styled(MdKeyboardArrowDown)`
 `;
 
 export const Button = styled.button`
+display: none;
   background-color: transparent;
  outline: 1px solid transparent;
   border: none;

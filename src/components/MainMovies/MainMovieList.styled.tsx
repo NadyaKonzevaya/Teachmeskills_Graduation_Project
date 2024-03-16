@@ -2,12 +2,17 @@ import styled from '@emotion/styled';
 import colors from '../../constants/colorConstants';
 
 export const MoviesWrapper = styled.ul`
+    margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+    /* padding-left: 24px;
+    padding-right: 24px; */
     list-style: none;
-    margin-bottom: 64px;
+    padding-bottom: 48px;
+    /* margin-bottom: 64px; */
+    /* padding-top: 16px; */
+    /* display: flex;
+    flex-wrap: wrap;
+    gap: 40px; */
 `;
 
 export const ShowMoreButton = styled.button`
@@ -25,5 +30,6 @@ export const ShowMoreButton = styled.button`
 `;
 
 export const MainWrapper = styled.div`
+    padding-bottom: 48px;
     grid-column: 2 / 5;
 `;

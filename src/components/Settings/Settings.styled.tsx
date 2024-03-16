@@ -4,15 +4,20 @@ import IRadioLabelLeftProps from '../Filters/Filters.types';
 
 export const SettingsWrapper = styled.div`
 grid-column: 2 / 4;
+padding-bottom: 48px;
+ /* padding-left: 24px;
+    padding-right: 24px; */
 `;
 
 export const Form = styled.form`
     width: 100%;
+   
 `;
 
 export const Title = styled.h2`
     font-size: 24px;
     font-weight: 600;
+    margin-top: 0;
     margin-bottom: 16px;
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
@@ -24,10 +29,13 @@ export const Text = styled.p`
 `;
 
 export const Wrapper = styled.div`
-    padding: 24px 40px;
+    padding: 24px;
+    /* padding: 24px 40px; */
     border: ${({ theme }) => !theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 10px;
     display: flex;
+    gap: 20px;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -39,7 +47,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Label = styled.label`
-flex-basis: calc((100% - 40px) / 2);
+/* flex-basis: calc((100% - 40px) / 2); */
+width: 100%;
     display: inline-flex;
     flex-direction: column;
     font-weight: 600;
@@ -52,7 +61,7 @@ export const Input = styled.input`
     margin-top: 8px;
     padding-left: 20px;
     padding-right: 20px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
      border: ${({ theme }) => !theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 10px;
     font-size: 16px;
@@ -61,8 +70,8 @@ export const Input = styled.input`
 `;
 
 export const LabelBottom = styled(Label)`
-    margin-top: 24px;
-    margin-left: auto;
+    /* margin-top: 24px; */
+    /* margin-left: auto; */
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
 
@@ -100,19 +109,28 @@ export const SwitchSlider = styled.span<IRadioLabelLeftProps>`
     }
 `;
 export const ButtonWrap = styled.div`
-    text-align: right;
+display: flex;
+flex-direction: column;
+gap: 16px;
+    /* text-align: right; */
 `;
 
 export const Button = styled.button`
-    width: 266px;
+margin: 0 auto;
+    /* width: 266px; */
+    width: 270px;
     height: 56px;
     font-family: inherit;
     background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.white}`)};
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
     border: ${({ theme }) => !theme && `2px solid ${colors.contextualColors.light}`};
-    margin-left: 40px;
+    /* margin-left: 40px; */
     &:hover, &:active {
         background-color: ${colors.systemColors.primary};
     }
     outline: none;
 `;
+
+export const WrapperTheme = styled(Wrapper)`
+    flex-direction: row;
+`

@@ -4,19 +4,23 @@ import colors from '../../constants/colorConstants';
 import IRadioLabelLeftProps from './Filters.types';
 
 export const Container = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
-    width: 518px;
+    width: 100%;
+    overflow: auto;
     height: 100%;
     background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.dark}` : `${colors.contextualColors.white}`)};
-    border-top-left-radius: 20px;
+    /* border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    /* width: 518px; */
 `;
 
 export const Form = styled.form`
-    height: 100%;
-    padding: 35px 40px;
+    height: auto;
+    /* height: 100%; */
+    padding: 32px 24px 48px 24px;
+    /* padding: 35px 40px; */
 `;
 
 export const TitleWrap = styled.div`
@@ -27,7 +31,12 @@ export const TitleWrap = styled.div`
 `;
 
 export const Title = styled.h1`
+font-size: 20px;
   color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+  }
 `;
 
 export const Label = styled.label`
@@ -47,7 +56,7 @@ export const Wrap = styled.div`
   width: 100%;
   margin-bottom: 25px;
   padding-bottom: 32px;
-  border-bottom: 1px solid ${colors.backgroundColors.graphite};
+  border-bottom: 1px solid ${colors.contextualColors.light};
 `;
 
 export const RadioInput = styled.input`
@@ -59,7 +68,7 @@ export const RadioLabelLeft = styled.label<IRadioLabelLeftProps>`
 display: inline-flex;
 justify-content: center;
 align-items: center;
-width: 49%;
+width: 48%;
 color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
     height: 45px;
      border: ${({ theme }) => (theme ? `2px solid ${colors.backgroundColors.graphite}` : `2px solid ${colors.contextualColors.light}`)} ;
@@ -118,7 +127,7 @@ height: auto;
     display: flex;
     border: ${({ theme }) => !theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 6px;
-    padding: 3px;
+    padding: 2px;
     background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.dark}` : `${colors.contextualColors.light}`)};
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
    `;
@@ -136,15 +145,23 @@ export const CrossButton = styled.button`
     }
    `;
 
-export const InputFromTo = styled(Input)`
-  flex-basis: auto((100% - 40px) / 2);
+interface IFromToWrapProps {
+  type: string;
+}
 
-`;
-
-export const FromToWrap = styled.div`
+export const FromToWrap = styled.div<IFromToWrapProps>`
     display: flex;
     justify-content: space-between;
+    flex-direction: ${({ type }) => type === 'mobileMenu' && 'column'};
+    gap: 16px;
+    /* gap: 24px; */
    `;
+
+export const InputFromTo = styled(Input)`
+width: 45%;
+  /* flex-basis: calc((100% - 40px) / 2); */
+
+`;
 
 export const FormButton = styled.button`
      flex-basis: auto((100% - 40px) / 2);

@@ -5,7 +5,10 @@ import colors from '../../constants/colorConstants';
 import { IRatingProps } from './Movie.types';
 
 export const MovieWrap = styled.li`
-    flex-basis: calc((100% - 4*40px) / 5);
+  &:not(:last-child) {
+    margin-bottom: 32px;
+}
+    /* flex-basis: calc((100% - 4*40px) / 5); */
     position: relative;
 `;
 
@@ -19,9 +22,10 @@ export const MovieImg = styled.img`
 `;
 
 export const Title = styled.h2`
+mt20
     font-size: 16px;
     font-weight: 700;
-    margin-top: 24px;
+    /* margin-top: 24px; */
     margin-bottom: 4px;
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;

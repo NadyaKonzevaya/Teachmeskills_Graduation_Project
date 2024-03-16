@@ -10,15 +10,22 @@ export const MovieWrap = styled.div`
 `;
 
 export const LeftSide = styled.div`
+display: none;
     width: 266px;
     margin-right: 42px;
 `;
 
-export const ImageWrap = styled.div`
-     width: 266px;
-    height: 357px;
-    overflow: hidden;
+export const MovieImage = styled.div`
     margin-bottom: 32px;
+`;
+
+export const ImageWrap = styled.div`
+     /* width: 266px;
+    height: 357px; */
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 24px;
+    /* margin-bottom: 32px; */
     border-radius: 20px;
 `;
 
@@ -51,12 +58,17 @@ export const ShareElement = styled(IoShareSocialOutline)`
 `;
 
 export const RightSide = styled.div`
-    
+    /* padding-left: 24px;
+    padding-right: 24px; */
 `;
 
 export const Title = styled.h2`
-  margin-top: 10px;
-  margin-bottom: 24px;
+  margin-top: 0px;
+  /* margin-top: 10px; */
+  margin-bottom: 20px;
+  /* margin-bottom: 24px; */
+  font-size: 20px;
+  /* font-size: 28px; */
   color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
 
@@ -103,7 +115,8 @@ export const ImdbRating = styled.span`
 
 export const Text = styled.p`
 margin-top: 0;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+    /* margin-bottom: 40px; */
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`}
 `;
 
@@ -121,6 +134,7 @@ export const Value = styled.span`
 export const PropertyWrap = styled.div`
     display: grid;
     grid-template-columns: 136px 1fr;
-    gap: 20px;
+    gap: 16px;
+    /* gap: 20px; */
     margin-bottom: 56px;
 `;

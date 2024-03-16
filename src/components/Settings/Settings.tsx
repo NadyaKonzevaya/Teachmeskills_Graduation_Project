@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   Label, Title, Wrapper, Input, Form, SettingsWrapper, LabelBottom, SwitchCheck, SwitchLabel,
-  Switch, SwitchSlider, Text, Button, ButtonWrap,
+  Switch, SwitchSlider, Text, Button, ButtonWrap, WrapperTheme,
 } from './Settings.styled';
 import TEXTNODES from '../../constants/textConstants';
 import ThemeContext from '../../utils/Context';
@@ -58,7 +58,7 @@ export default function Settings() {
           </LabelBottom>
         </Wrapper>
         <Title theme={theme === 'dark'}>{TEXTNODES.COLOR_MODE}</Title>
-        <Wrapper theme={theme === 'dark'}>
+        <WrapperTheme theme={theme === 'dark'}>
           <div>
             <Label theme={theme === 'dark'}>{TEXTNODES.DARK}</Label>
             <Text>{TEXTNODES.USE_DARK_THEME}</Text>
@@ -69,7 +69,7 @@ export default function Settings() {
               <SwitchSlider checked={checked} readOnly />
             </SwitchLabel>
           </Switch>
-        </Wrapper>
+        </WrapperTheme>
         <ButtonWrap>
           <Button type="button" theme={theme === 'dark'}>{TEXTNODES.CANCEL}</Button>
           <Button type="submit" theme={theme === 'dark'}>{TEXTNODES.SAVE}</Button>

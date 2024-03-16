@@ -3,6 +3,8 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
 import colors from '../../constants/colorConstants';
 
 export const Wrap = styled.div`
+/* padding-left: 24px;
+padding-right: 24px; */
 grid-area: 2 / 3;
 grid-column: 3 / 5;
 `;
@@ -11,6 +13,7 @@ export const TitleWrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 32px;
 `;
 export const BtnWrap = styled.div`
 position: relative;
@@ -25,7 +28,7 @@ export const ButtonPrev = styled.div`
 position: static;
     margin: 0;
     width: 15px !important; 
-    display: block;
+    display: block !important;
     color: ${colors.backgroundColors.graphite};
     margin-right: 16px;
     &::after {
@@ -47,11 +50,20 @@ export const FaArrowRightElement = styled(FaArrowRight)`
 export const ButtonNext = styled.div`
 position: static;
     margin: 0;
-    display: block;
+    display: block !important;
     width: 15px !important;
     color: ${colors.backgroundColors.graphite};
     &::after {
     content: ''; 
     display: none;
     }
+`;
+
+export const Title = styled.h2`
+  margin: 0px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 24px; */
+  font-size: 20px;
+  /* font-size: 28px; */
+  color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;

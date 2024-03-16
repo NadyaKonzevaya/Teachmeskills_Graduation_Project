@@ -15,7 +15,7 @@ import { filterMoviesByRating } from '../../redux/movies/MoviesSlice';
 import { IParams } from '../../redux/interfaces';
 import ThemeContext from '../../utils/Context';
 
-export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
+export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) {
   const { theme } = useContext(ThemeContext);
   const [sortIsChecked, setSortIsChecked] = useState('Year');
   const [params, setParams] = useState<IParams>({});
@@ -97,14 +97,14 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
     setRating({ start: '', end: '' });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(fetchMoviesByParams(params)).then(() => {
       if (query) {
         dispatch(fetchMoviesByQuery(query));
       }
     }).then(() => {
-      if (rating) {
+      if (rating.start !== '' && rating.end !== '') {
         dispatch(filterMoviesByRating(rating));
       }
     });
@@ -157,7 +157,7 @@ export default function Filters({ isOpen, handleIsOpen }: IBackDropProps) {
             <Label theme={theme === 'dark'} htmlFor={TEXTNODES.COUNTRY}>{TEXTNODES.COUNTRY}</Label>
             <Select onChange={setCountryQuery} value={country} setValue={setCountry} />
           </InputWrap>
-          <FromToWrap>
+          <FromToWrap type={type}>
             <FormButton theme={theme === 'dark'} type="button" onClick={clearFilters}>{TEXTNODES.CLEAR_FILTERS}</FormButton>
             <FormButton theme={theme === 'dark'} type="submit" onClick={handleSubmit}>
               <StyledLink to="sorting">{TEXTNODES.SHOW_RESULTS}</StyledLink>

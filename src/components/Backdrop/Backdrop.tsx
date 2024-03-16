@@ -5,7 +5,7 @@ import IBackDropProps from './Backdrop.types';
 export default function Backdrop({ isOpen, handleIsOpen }: IBackDropProps) {
   return (
     <Overlay>
-      <Filters isOpen={isOpen} handleIsOpen={handleIsOpen} />
+      <Filters isOpen={isOpen} handleIsOpen={handleIsOpen} type="mobileMenu" />
     </Overlay>
   );
 }

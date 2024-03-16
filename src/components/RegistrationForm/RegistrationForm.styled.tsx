@@ -5,12 +5,18 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 40px;
-  width: 574px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  padding: 24px;
+  /* padding: 40px; */
+  width: 100%;
+  /* width: 574px; */
   background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.dark}` : `${colors.contextualColors.white}`)};
   border-radius: 10px;
 `;
 export const FormTitle = styled.h1`
+font-size: 20px;
+/* font-size: 24px; */
   margin-bottom: 40px;
   color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
@@ -58,6 +64,8 @@ export const Button = styled.button`
 `;
 
 export const TextBottom = styled.p`
+font-size: 14px;
+/* font-size: 16px; */
   margin: 0;
   color:${colors.systemColors.secondary};
   text-align: center;

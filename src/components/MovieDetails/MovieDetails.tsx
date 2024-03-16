@@ -4,10 +4,10 @@ import { LuDot } from 'react-icons/lu';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getMovieDetailsSelector } from '../../redux/selectors';
 import { IMAGE_BASE_URL } from '../../utils/constants';
-import { BookmarkElement } from '../MainSharedLayout/MainSharedLayout.styled';
+import { BookmarkElement } from '../Navigation/Navigation.styled';
 import {
   ImageWrap, LeftSide, ReactionWrap, ReactionBtn, ShareElement, RightSide, Title, Rating,
-  ImdbRating, RatingWrap, Text, PropertyName, Value, PropertyWrap, Image,
+  ImdbRating, RatingWrap, Text, PropertyName, Value, PropertyWrap, Image, MovieImage,
 } from './MovieDetails.styled';
 import { fetchCastMovieDetails, fetchMovieDetails, fetchRecommendsMovieDetails } from '../../redux/movies/operations';
 import { GenreList, GenteItem } from '../Movie/Movie.styled';
@@ -88,6 +88,19 @@ export default function MovieDetails() {
               min
             </ImdbRating>
           </RatingWrap>
+          <MovieImage>
+            <ImageWrap>
+              <Image src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+            </ImageWrap>
+            <ReactionWrap>
+              <ReactionBtn theme={theme === 'dark'} onClick={() => toggleFavorite(movie.id)} isFavorite={movie.isFavorite}>
+                <BookmarkElement />
+              </ReactionBtn>
+              <ReactionBtn theme={theme === 'dark'}>
+                <ShareElement />
+              </ReactionBtn>
+            </ReactionWrap>
+          </MovieImage>
           <Text theme={theme === 'dark'}>{movie.overview}</Text>
           <PropertyWrap>
             <PropertyName theme={theme === 'dark'}>{TEXTNODES.YEAR}</PropertyName>
