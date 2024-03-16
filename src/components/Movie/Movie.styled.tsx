@@ -5,11 +5,20 @@ import colors from '../../constants/colorConstants';
 import { IRatingProps } from './Movie.types';
 
 export const MovieWrap = styled.li`
+  position: relative;
   &:not(:last-child) {
     margin-bottom: 32px;
-}
-    /* flex-basis: calc((100% - 4*40px) / 5); */
-    position: relative;
+  }
+    
+  @media screen and (min-width: 480px) {
+      flex-basis: calc((100% - 32px) / 2);
+    }
+
+  @media screen and (min-width: 768px) {
+      flex-basis: calc((100% - 2*32px) / 3);
+    }  
+
+     /* flex-basis: calc((100% - 4*40px) / 5); */
 `;
 
 export const ImgWrap = styled(NavLink)`

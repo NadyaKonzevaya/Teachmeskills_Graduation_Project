@@ -15,11 +15,15 @@ export const Form = styled.form`
 `;
 
 export const Title = styled.h2`
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 16px;
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+
+    @media screen and (min-width: 550px) {
+          font-size: 24px;
+    }
 `;
 
 export const Text = styled.p`
@@ -44,15 +48,25 @@ export const Wrapper = styled.div`
     &:active {
         background-color: ${({ theme }) => theme && `${colors.backgroundColors.dark}`};
     }
+
+    @media screen and (min-width: 550px) {
+        flex-direction: row;
+        /* flex-wrap: nowrap; */
+         padding: 40px;
+    }
 `;
 
 export const Label = styled.label`
-/* flex-basis: calc((100% - 40px) / 2); */
+
 width: 100%;
     display: inline-flex;
     flex-direction: column;
     font-weight: 600;
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+
+    @media screen and (min-width: 550px) {
+        flex-basis: calc((100% - 40px) / 2);
+    }
 `;
 
 export const Input = styled.input`
@@ -61,18 +75,21 @@ export const Input = styled.input`
     margin-top: 8px;
     padding-left: 20px;
     padding-right: 20px;
-    /* box-sizing: border-box; */
      border: ${({ theme }) => !theme && `2px solid ${colors.contextualColors.light}`};
     border-radius: 10px;
     font-size: 16px;
     background-color: ${({ theme }) => theme && `${colors.backgroundColors.graphite}`};
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+     @media screen and (min-width: 550px) {
+    }
 `;
 
 export const LabelBottom = styled(Label)`
-    /* margin-top: 24px; */
-    /* margin-left: auto; */
     color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+    @media screen and (min-width: 550px) {
+        margin-top: 24px; 
+        margin-left: auto;
+    }
 `;
 
 export const Switch = styled.div`
@@ -109,9 +126,13 @@ export const SwitchSlider = styled.span<IRadioLabelLeftProps>`
     }
 `;
 export const ButtonWrap = styled.div`
-display: flex;
-flex-direction: column;
-gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @media screen and (min-width: 550px) {
+     flex-direction: row;
+     justify-content: space-between;
+}
     /* text-align: right; */
 `;
 
@@ -129,8 +150,13 @@ margin: 0 auto;
         background-color: ${colors.systemColors.primary};
     }
     outline: none;
+
+      @media screen and (min-width: 550px) {
+        width: unset;
+     flex-basis: calc((100% - 16px) / 2)
+}
 `;
 
 export const WrapperTheme = styled(Wrapper)`
     flex-direction: row;
-`
+`;

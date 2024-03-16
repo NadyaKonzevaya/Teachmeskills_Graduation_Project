@@ -8,11 +8,16 @@ export const Form = styled.form`
   margin-top: 48px;
   margin-bottom: 48px;
   padding: 24px;
-  /* padding: 40px; */
+  
   width: 100%;
-  /* width: 574px; */
+  
   background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.dark}` : `${colors.contextualColors.white}`)};
   border-radius: 10px;
+
+  @media screen and (min-width: 550px) {
+    width: 574px;
+    padding: 40px;
+  }
 `;
 export const FormTitle = styled.h1`
 font-size: 20px;

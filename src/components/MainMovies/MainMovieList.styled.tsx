@@ -8,6 +8,13 @@ export const MoviesWrapper = styled.ul`
     padding-right: 24px; */
     list-style: none;
     padding-bottom: 48px;
+
+     @media screen and (min-width: 480px) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        padding-bottom: 56px;
+    }
     /* margin-bottom: 64px; */
     /* padding-top: 16px; */
     /* display: flex;

@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import { BsFilterRight } from 'react-icons/bs';
 import colors from '../../constants/colorConstants';
+import IBurgerMenuProps from './Header.types';
 
 export const HeaderWrapper = styled.div`
 margin: 0 auto;
+width: 100%;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -13,6 +15,12 @@ margin: 0 auto;
     /* padding: 32px 24px 40px 24px; */
     padding-top: 32px;
     padding-bottom: 40px;
+
+    @media screen and (min-width: 550px) {
+      flex-wrap: nowrap;
+      padding-top: 40px;
+    padding-bottom: 48px;
+    }
     
 
 /* grid-area: header; */
@@ -28,8 +36,14 @@ margin: 0 auto;
    
 `;
 
-export const BurgerMenu = styled.p`
-padding: 0;
+export const Logo = styled.img`
+  margin: 0;
+  width: 152px;
+  height: 39px;
+`;
+
+export const BurgerMenu = styled.p<IBurgerMenuProps>`
+padding: 15px 18px;
 margin: 0;
   display: flex;
   justify-content: center;
@@ -42,13 +56,29 @@ margin: 0;
   border-radius: 10px;
   color: ${colors.contextualColors.white};
   cursor: pointer;
+  @media screen and (min-width: 550px) {
+    margin-right: ${({ isOpen }) => isOpen && '248px'};
+  }
 `;
 
 export const SearchBarWrap = styled.div`
-    position: relative;
-    height: 56px;
-    width: 100%;
+  display: none;
+  position: relative;
+  height: 56px;
+  width: 100%;
 
+  @media screen and (min-width: 550px) {
+    display: block;
+  }
+`;
+
+export const SearchBarWrapMobile = styled.div`
+  position: relative;
+  height: 56px;
+  width: 100%;
+  @media screen and (min-width: 550px) {
+    display: none;
+  }
 `;
 
 export const SearchBar = styled.input`

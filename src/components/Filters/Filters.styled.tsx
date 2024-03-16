@@ -11,9 +11,12 @@ export const Container = styled.div`
     overflow: auto;
     height: 100%;
     background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.dark}` : `${colors.contextualColors.white}`)};
-    /* border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    /* width: 518px; */
+
+    @media screen and (min-width: 520px) {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      width: 518px;
+    }
 `;
 
 export const Form = styled.form`
@@ -21,6 +24,9 @@ export const Form = styled.form`
     /* height: 100%; */
     padding: 32px 24px 48px 24px;
     /* padding: 35px 40px; */
+     @media screen and (min-width: 520px) {
+        padding: 48px 40px;
+    }
 `;
 
 export const TitleWrap = styled.div`
@@ -34,7 +40,7 @@ export const Title = styled.h1`
 font-size: 20px;
   color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 520px) {
     font-size: 24px;
   }
 `;
@@ -154,6 +160,10 @@ export const FromToWrap = styled.div<IFromToWrapProps>`
     justify-content: space-between;
     flex-direction: ${({ type }) => type === 'mobileMenu' && 'column'};
     gap: 16px;
+    @media screen and (min-width: 520px) {
+      gap: 40px;
+      flex-direction: row;
+    }
     /* gap: 24px; */
    `;
 
@@ -164,14 +174,21 @@ width: 45%;
 `;
 
 export const FormButton = styled.button`
-     flex-basis: auto((100% - 40px) / 2);
-    padding: 15px 60px;
+     /* flex-basis: auto((100% - 40px) / 2); */
+     width: 270px;
+     height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
     background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.graphite}` : `${colors.contextualColors.light}`)};
     color: ${colors.contextualColors.white};
     &:hover, &:focus, &:active {
         background-color: ${colors.systemColors.primary};
     }
-
+    @media screen and (min-width: 520px) {
+      width: 199px;
+    }
 `;
 
 export const StyledLink = styled(Link)`

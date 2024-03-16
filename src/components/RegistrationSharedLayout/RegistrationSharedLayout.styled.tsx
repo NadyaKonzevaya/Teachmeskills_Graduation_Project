@@ -19,6 +19,10 @@ export const Background = styled.div`
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
+
+  @media screen and (min-width: 550px) {
+     padding: 46px 40px 56px 40px;
+  }
 `;
 
 export const Logo = styled.img`
@@ -27,7 +31,9 @@ margin: 0 auto;
   width: 152px;
   height: 39px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 550px) {
+    display: inline;
+    margin: 0;
     width: 162px;
     height: 42px;
   }

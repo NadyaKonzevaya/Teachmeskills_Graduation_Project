@@ -4,10 +4,10 @@ import colors from '../../constants/colorConstants';
 import { CopyRight } from '../RegistrationSharedLayout/RegistrationSharedLayout.styled';
 
 export const BackgroundMain = styled.div`
-min-width: 320px;
+    min-width: 320px;
     display: grid;
-     padding-left: 24px;
-  padding-right: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
     grid-template: minmax(216px, auto) 1fr / 1fr;
     grid-template-areas: "header" "main";
     min-height: 100vh;
@@ -15,15 +15,17 @@ min-width: 320px;
     background-color: ${colors.contextualColors.white};
     background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.black}` : `${colors.contextualColors.white}`)};
     
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 550px) {
         grid-template: minmax(144px, auto) 1fr / 1fr;
         grid-template-areas: "header" "main";
+        padding-left: 40px;
+        padding-right: 40px;
     }
     @media screen and (min-width: 1440px) {
         grid-template: minmax(152px, auto) 1fr / 1fr;
         grid-template-areas: "header" "main";
     }
-  
+
    /* grid-template: minmax(136px, auto) 1fr / 1fr; */
 `;
 

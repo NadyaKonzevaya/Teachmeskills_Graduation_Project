@@ -7,18 +7,23 @@ import colors from '../../constants/colorConstants';
 import { INavItemProps, INavigationProps } from './Navigation.types';
 
 export const NavMenu = styled.nav<INavigationProps>`
-width: ${({ type }) => type === 'mobileMenu' && '220px'};
-position: ${({ type }) => type === 'mobileMenu' && 'fixed'};
-top: ${({ type }) => type === 'mobileMenu' && '0'};
-right: ${({ type }) => type === 'mobileMenu' && '0'};
-padding: ${({ type }) => type === 'mobileMenu' && '46px 49px 0px 49px'};
-z-index: ${({ type }) => type === 'mobileMenu' && '1'};
-height: ${({ type }) => type === 'mobileMenu' && '100vh'};
-background-color: ${colors.contextualColors.white};
-box-sizing: border-box;
+    width: ${({ type }) => type === 'mobileMenu' && '220px'};
+    position: ${({ type }) => type === 'mobileMenu' && 'fixed'};
+    top: ${({ type }) => type === 'mobileMenu' && '0'};
+    right: ${({ type }) => type === 'mobileMenu' && '0'};
+    padding: ${({ type }) => type === 'mobileMenu' && '46px 49px 0px 49px'};
+    z-index: ${({ type }) => type === 'mobileMenu' && '1'};
+    height: ${({ type }) => type === 'mobileMenu' && '100vh'};
+    background-color: ${colors.contextualColors.white};
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 40px;
+    @media screen and (min-width: 550px) {
+        width: ${({ type }) => type === 'mobileMenu' && '288px'};
+        padding: ${({ type }) => type === 'mobileMenu' && '56px 0 0 93px'};
+    }
+
 `;
 
 export const NavItem = styled(Link)<INavItemProps>`
