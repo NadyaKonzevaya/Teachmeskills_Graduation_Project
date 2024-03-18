@@ -5,12 +5,12 @@ import { SelectWrap } from './Select.styled';
 import ThemeContext from '../../utils/Context';
 import ISelectParams from './Select.types';
 
-export default function Select({ onChange, value, setValue }: ISelectParams) {
+export default function Select({ onChange }: ISelectParams) {
   const { theme } = useContext(ThemeContext);
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCountry = e.target.value;
-    setValue(selectedCountry);
-    onChange();
+    // setValue(selectedCountry);
+    onChange(selectedCountry);
   };
   return (
     <SelectWrap
@@ -18,7 +18,7 @@ export default function Select({ onChange, value, setValue }: ISelectParams) {
       name={TEXTNODES.COUNTRY}
       id={TEXTNODES.COUNTRY}
       onChange={handleSelectChange}
-      value={value}
+      // value={value}
     >
       {selectValue.map((country) => (
         <option key={country[0]} value={country[0]}>

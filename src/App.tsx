@@ -6,8 +6,8 @@ import {
   MainSharedLayout,
   SignInForm,
 } from './components';
-import { RestrictedRoute } from './components/RestrictedRoute';
-import { PrivateRoute } from './components/PrivateRoute';
+// import { RestrictedRoute } from './components/RestrictedRoute';
+import { AuthRoute } from './components/AuthRoute';
 
 const RegistrationForm = lazy(() => import('./components/RegistrationForm/RegistrationForm'));
 const ResetPasswordForm = lazy(() => import('./components/ResetPasswordForm/ResetPasswordFrom'));
@@ -22,14 +22,14 @@ const FavoriteMovieList = lazy(() => import('./components/FavoriteMovieList/Favo
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<RestrictedRoute component={RegistrationSharedLayout} redirectTo="/movies" />}>
+      <Route path="/" element={<AuthRoute component={RegistrationSharedLayout} redirectTo="/movies" />}>
         <Route index element={<SignInForm />} />
         <Route path="signUp" element={<RegistrationForm />} />
         <Route path="reset" element={<ResetPasswordForm type="reset1" />} />
         <Route path="confirmReset" element={<ResetPasswordForm type="reset2" />} />
         <Route path="setNewPassword" element={<ResetPasswordForm type="newPassword" />} />
       </Route>
-      <Route path="/movies" element={<PrivateRoute component={MainSharedLayout} redirectTo="/" />}>
+      <Route path="/movies" element={<AuthRoute isPrivate component={MainSharedLayout} redirectTo="/" />}>
         <Route index element={<MainMovieList />} />
         <Route path="sorting" element={<FilteredMovieList />} />
         <Route path="search" element={<SearchList />} />

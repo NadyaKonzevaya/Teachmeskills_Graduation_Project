@@ -4,5 +4,6 @@ export interface INavItemProps {
 
 export interface INavigationProps {
   type: string;
+  theme: boolean;
   toogleOpen: (isOpen: boolean) => void;
 }

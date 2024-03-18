@@ -1,5 +1,5 @@
 import {
-  BookmarkElement, HomeElement, SettingsElement, TrendsElement,
+  BookmarkElement, HomeElement, SettingsElement, TrendsElement, LogOutElement,
 } from '../components/Navigation/Navigation.styled';
 import TEXTNODES from '../constants/textConstants';
 
@@ -53,4 +53,5 @@ export const NavItems = [
   [TrendsElement, TEXTNODES.TRENDS, '/movies/trends'],
   [BookmarkElement, TEXTNODES.FAVORITES, '/movies/favorites'],
   [SettingsElement, TEXTNODES.SETTINGS, '/movies/settings'],
+  // [LogOutElement, TEXTNODES.LOG_OUT, '/'],
 ];

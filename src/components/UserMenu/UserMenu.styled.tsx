@@ -3,10 +3,14 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import colors from '../../constants/colorConstants';
 
 export const UserMenuWrap = styled.div`
-display: none;
+  display: none;
+
+  @media screen and (min-width: 1440px) {
     margin-left: 41px;
-    /* display: flex; */
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Letters = styled.p`
@@ -38,10 +42,13 @@ export const MdKeyboardArrowDownElement = styled(MdKeyboardArrowDown)`
 
 export const Button = styled.button`
 display: none;
+@media screen and (min-width: 1440px) {
+  display: block;
   background-color: transparent;
- outline: 1px solid transparent;
+  outline: 1px solid transparent;
   border: none;
   &:focus {
     outline: 1px solid transparent;
   }
+}
 `;

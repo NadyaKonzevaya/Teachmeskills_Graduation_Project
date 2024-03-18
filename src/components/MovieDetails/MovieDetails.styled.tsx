@@ -4,19 +4,32 @@ import colors from '../../constants/colorConstants';
 import ReactionBtnProps from './MovieDetails.types';
 import { IRatingProps } from '../Movie/Movie.types';
 
+export const Container = styled.div`
+    /* @media screen and (min-width: 1024px) {
+        width: 928px;
+        margin: 0 auto;
+    } */
+`;
+
 export const MovieWrap = styled.div`
     display: flex;
     gap: 42px;
 `;
 
 export const LeftSide = styled.div`
-display: none;
+    display: none;
     width: 266px;
     margin-right: 42px;
+    @media screen and (min-width: 768px) {
+        display: block;
+    }
 `;
 
 export const MovieImage = styled.div`
     margin-bottom: 32px;
+     @media screen and (min-width: 768px) {
+        display: none;
+    }
 `;
 
 export const ImageWrap = styled.div`

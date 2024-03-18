@@ -3,8 +3,12 @@ import colors from '../../constants/colorConstants';
 import IRadioLabelLeftProps from '../Filters/Filters.types';
 
 export const SettingsWrapper = styled.div`
-grid-column: 2 / 4;
+grid-column: 1 / 5;
 padding-bottom: 48px;
+
+@media screen and (min-width: 1440px) {
+    grid-column: 2 / 3;
+}
  /* padding-left: 24px;
     padding-right: 24px; */
 `;

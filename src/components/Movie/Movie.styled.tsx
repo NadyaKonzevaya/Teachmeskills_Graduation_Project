@@ -17,8 +17,21 @@ export const MovieWrap = styled.li`
   @media screen and (min-width: 768px) {
       flex-basis: calc((100% - 2*32px) / 3);
     }  
-
-     /* flex-basis: calc((100% - 4*40px) / 5); */
+  @media screen and (min-width: 1024px) {
+      flex-basis: calc((100% - 3*32px) / 4);
+    }  
+  @media screen and (min-width: 1440px) {
+      flex-basis: calc((100% - 2*40px) / 3);
+    }  
+  @media screen and (min-width: 1440px) {
+      flex-basis: calc((100% - 2*40px) / 3);
+    }  
+  @media screen and (min-width: 1750px) {
+      flex-basis: calc((100% - 3*40px) / 4);
+    }  
+  @media screen and (min-width: 1920px) {
+      flex-basis: calc((100% - 4*40px) / 5);
+    }  
 `;
 
 export const ImgWrap = styled(NavLink)`
@@ -26,6 +39,7 @@ export const ImgWrap = styled(NavLink)`
 
 export const MovieImg = styled.img`
     width: 100%;
+    /* max-width: 266px; */
      border-radius: 20px; 
     margin: 0;
 `;

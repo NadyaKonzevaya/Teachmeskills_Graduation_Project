@@ -94,7 +94,7 @@ color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 
 export const RadioLabelRight = styled(RadioLabelLeft)`
       border-radius: 0 10px 10px 0;
-      color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+      /* color: ${({ theme }) => theme && `${colors.contextualColors.white}`}; */
 `;
 
 export const InputWrap = styled.div`
@@ -152,7 +152,7 @@ export const CrossButton = styled.button`
    `;
 
 interface IFromToWrapProps {
-  type: string;
+  type?: string;
 }
 
 export const FromToWrap = styled.div<IFromToWrapProps>`

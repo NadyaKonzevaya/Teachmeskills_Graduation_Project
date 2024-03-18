@@ -5,8 +5,18 @@ import colors from '../../constants/colorConstants';
 export const Wrap = styled.div`
 /* padding-left: 24px;
 padding-right: 24px; */
-grid-area: 2 / 3;
-grid-column: 3 / 5;
+width: 280px;
+margin: 0 auto;
+@media screen and (min-width: 680px) {
+    width: 600px;
+}
+@media screen and (min-width: 768px) {
+    grid-area: 2 / 3;
+    grid-column: 2 / 5;
+    width: unset;
+    margin: unset;
+}
+/* grid-column: 3 / 5; */
 `;
 
 export const TitleWrap = styled.div`

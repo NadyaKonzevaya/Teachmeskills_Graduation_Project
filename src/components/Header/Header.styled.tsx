@@ -4,8 +4,8 @@ import colors from '../../constants/colorConstants';
 import IBurgerMenuProps from './Header.types';
 
 export const HeaderWrapper = styled.div`
-margin: 0 auto;
-width: 100%;
+    margin: 0 auto;
+    width: 100%;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -21,18 +21,24 @@ width: 100%;
       padding-top: 40px;
     padding-bottom: 48px;
     }
-    
+    @media screen and (min-width: 1024px) {
+        width: 928px;
+        margin: 0 auto;
+    }
+    @media screen and (min-width: 1440px) {
+      width: 100%;
+      grid-area: 'header';
+      display: grid;
+      gap: 0;
+      grid-auto-flow: column;
+      align-items: center;
+      grid-template: 1fr / minmax(306px, auto) 1fr minmax(206px, auto);
+      /* grid-template: 1fr / minmax(auto, 246px) 1fr minmax(auto, 305px); */
+    } 
 
-/* grid-area: header; */
-    /* padding-left: 62px;
-    padding-right: 62px;
-     display: grid;
-     grid-auto-flow: column;
-    align-items: center; */
-    /* grid-template: 1fr / minmax(306px, auto) 1fr minmax(306px, auto);
+
     
-    */
-    /* grid-template: 1fr / minmax(auto, 246px) 1fr minmax(auto, 305px); */
+    
    
 `;
 
@@ -58,6 +64,9 @@ margin: 0;
   cursor: pointer;
   @media screen and (min-width: 550px) {
     margin-right: ${({ isOpen }) => isOpen && '248px'};
+  }
+  @media screen and (min-width: 1440px) {
+    display: none;
   }
 `;
 

@@ -17,9 +17,14 @@ export const MoviesWrapper = styled.ul`
     }
     /* margin-bottom: 64px; */
     /* padding-top: 16px; */
-    /* display: flex;
-    flex-wrap: wrap;
-    gap: 40px; */
+    @media screen and (min-width: 1024px) {
+        width: 928px;
+        margin: 0 auto;
+    }
+    @media screen and (min-width: 1440px) {
+        width: 100%;
+        gap: 40px;
+    }
 `;
 
 export const ShowMoreButton = styled.button`
@@ -38,5 +43,9 @@ export const ShowMoreButton = styled.button`
 
 export const MainWrapper = styled.div`
     padding-bottom: 48px;
-    grid-column: 2 / 5;
+    grid-column: 1 / 5;
+
+    @media screen and (min-width: 1440px) {
+      grid-column: 2 / 5;
+    }
 `;
