@@ -38,6 +38,7 @@ enum TEXTNODES {
   SIGN_IN = 'Sign In',
   NO_ACCOUNT = 'Don’t have an account?',
   LOG_OUT = 'Log out',
+  WELCOME = 'Welcome',
 }
 
 export default TEXTNODES;

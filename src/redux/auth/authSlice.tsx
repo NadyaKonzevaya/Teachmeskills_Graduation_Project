@@ -14,14 +14,21 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setLogInTrue: (state) => {
+      state.isLoggedIn = true;
+    },
     setLogOut: (state) => {
       state.user = null;
       state.isLoggedIn = false;
+      state.tokens = false;
+      state.isRefreshing = false;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     },
   },
   extraReducers: (builder) => builder
     .addCase(register.fulfilled, (state, action) => {
-      state.isLoggedIn = true;
+      // state.isLoggedIn = true;
       state.user = action.payload;
     })
     .addCase(register.rejected, (state, action) => {
@@ -34,6 +41,6 @@ export const authSlice = createSlice({
     }),
 });
 
-export const { setLogOut } = authSlice.actions;
+export const { setLogInTrue, setLogOut } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -13,7 +13,7 @@ export default function RootComponent() {
 
   return (
     <React.StrictMode>
-      <BrowserRouter basename="/Teachmeskills_Graduation_Project">
+      <BrowserRouter>
         <Provider store={store}>
           <PersistGate persistor={persistor} loading={null}>
             <ThemeContext.Provider value={useMemo(() => ({ theme, setTheme }), [theme, setTheme])}>
@@ -25,3 +25,4 @@ export default function RootComponent() {
     </React.StrictMode>
   );
 }
+// basename="/Teachmeskills_Graduation_Project"

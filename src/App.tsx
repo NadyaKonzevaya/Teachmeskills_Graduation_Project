@@ -7,6 +7,7 @@ import {
   SignInForm,
 } from './components';
 import { AuthRoute } from './components/PrivateRoute';
+import { Confirmation } from './components/Confirmation';
 
 const RegistrationForm = lazy(() => import('./components/RegistrationForm/RegistrationForm'));
 const ResetPasswordForm = lazy(() => import('./components/ResetPasswordForm/ResetPasswordFrom'));
@@ -17,6 +18,7 @@ const MovieDetails = lazy(() => import('./components/MovieDetails/MovieDetails')
 const TrendsMovieList = lazy(() => import('./components/TrendsMovieList/TrendsMovieList'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 const FavoriteMovieList = lazy(() => import('./components/FavoriteMovieList/FavoriteMovieList'));
+const NewPasswordForm = lazy(() => import('./components/NewPasswordForm/NewPasswordForm'));
 
 function App() {
   return (
@@ -26,7 +28,8 @@ function App() {
         <Route path="signUp" element={<RegistrationForm />} />
         <Route path="reset" element={<ResetPasswordForm type="reset1" />} />
         <Route path="confirmReset" element={<ResetPasswordForm type="reset2" />} />
-        <Route path="setNewPassword" element={<ResetPasswordForm type="newPassword" />} />
+        <Route path="setNewPassword" element={<NewPasswordForm />} />
+        <Route path="confirmation" element={<Confirmation />} />
       </Route>
       <Route path="/movies" element={<AuthRoute isPrivate component={MainSharedLayout} redirectTo="/" />}>
         <Route index element={<MainMovieList />} />

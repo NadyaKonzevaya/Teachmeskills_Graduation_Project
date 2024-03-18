@@ -28,7 +28,7 @@ export default function RegistrationForm() {
         password: passwordInput!.value,
         course_group: 1,
       }));
-      navigate('/activate/:uid/:token', { replace: true });
+      navigate('/confirmation', { replace: true });
     }
     form.reset();
   }, [dispatch, navigate]);

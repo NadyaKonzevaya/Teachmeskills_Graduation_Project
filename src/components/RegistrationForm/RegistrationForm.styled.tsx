@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import colors from '../../constants/colorConstants';
+import { NavLink } from 'react-router-dom';
 
 export const Form = styled.form`
   display: flex;
@@ -55,6 +56,13 @@ export const InputConfirm = styled(Input)`
 `;
 
 export const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  color: ${colors.systemColors.secondary};
+  margin-bottom: 40px;
+`;
+
+export const NavLinkStyled = styled(NavLink)`
   margin: 0;
   font-size: 14px;
   color: ${colors.systemColors.secondary};

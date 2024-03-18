@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCallback, useContext } from 'react';
 import {
-  Form, FormTitle, Label, Input, InputLast, Text, Button, TextBottom,
+  Form, FormTitle, Label, Input, InputLast, Button, NavLinkStyled, TextBottom,
 } from '../RegistrationForm/RegistrationForm.styled';
 import TEXTNODES from '../../constants/textConstants';
 import { useAppDispatch } from '../../redux/hooks';
@@ -39,7 +39,7 @@ export default function SignInForm() {
       <Input theme={theme === 'dark'} type="email" name="email" id={TEXTNODES.EMAIL} placeholder="Your email" autoComplete="email" />
       <Label theme={theme === 'dark'} htmlFor={TEXTNODES.PASSWORD}>{TEXTNODES.PASSWORD}</Label>
       <InputLast theme={theme === 'dark'} type="password" name="password" id={TEXTNODES.PASSWORD} placeholder="Your password" autoComplete="password" />
-      <Text>{TEXTNODES.FORGOT_PASSWORD}</Text>
+      <NavLinkStyled to="/reset">{TEXTNODES.FORGOT_PASSWORD}</NavLinkStyled>
       <Button type="submit" theme={theme === 'dark'}>{TEXTNODES.SIGN_IN}</Button>
       <TextBottom>
         {TEXTNODES.NO_ACCOUNT}

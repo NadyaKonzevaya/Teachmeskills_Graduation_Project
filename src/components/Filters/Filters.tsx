@@ -25,9 +25,7 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
     years: { start: '', end: '' },
     rating: { start: '', end: '' },
   });
-  console.log(filterState);
-  console.log(isOpen);
-  
+
   const [sortIsChecked, setSortIsChecked] = useState('Year');
   const [genresInFilter, setGenresInFilter] = useState<IGenres>(genres);
   const dispatch = useAppDispatch();
@@ -126,7 +124,7 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
   return (
     isOpen && (
       <Container theme={theme === 'dark'}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <TitleWrap>
             <Title theme={theme === 'dark'}>{TEXTNODES.FILTERS}</Title>
             <CrossButton theme={theme === 'dark'} type="button" onClick={handleClose}><IoMdClose /></CrossButton>
@@ -171,7 +169,7 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
           </InputWrap>
           <FromToWrap type={type}>
             <FormButton theme={theme === 'dark'} type="button" onClick={clearFilters}>{TEXTNODES.CLEAR_FILTERS}</FormButton>
-            <FormButton theme={theme === 'dark'} type="submit" onClick={handleSubmit}>
+            <FormButton theme={theme === 'dark'} type="submit">
               <StyledLink to="sorting">{TEXTNODES.SHOW_RESULTS}</StyledLink>
             </FormButton>
           </FromToWrap>

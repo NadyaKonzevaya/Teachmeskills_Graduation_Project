@@ -1,5 +1,5 @@
 export interface INavItemProps {
-  active: string;
+  active?: string;
 }
 
 export interface INavigationProps {

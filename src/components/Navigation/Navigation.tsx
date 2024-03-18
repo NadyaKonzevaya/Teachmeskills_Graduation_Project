@@ -13,13 +13,16 @@ export default function Navigation({ type, toggleOpen }: INavigationProps) {
   const dispatch = useAppDispatch();
   const { theme } = useContext(ThemeContext);
 
-  const handleClick = (link: string) => {
+  console.log(activeLink);
+
+  const handleClick = (link) => {
+    console.log(link);
     setActiveLink(link);
-    toggleOpen();
+    if (type === 'mobileMenu') { toggleOpen(false) };
   };
 
-  const handleLogout = (link: string) => {
-    setActiveLink(link);
+  const handleLogout = () => {
+    // setActiveLink(link);
     dispatch(setLogOut());
   };
 
@@ -34,7 +37,7 @@ export default function Navigation({ type, toggleOpen }: INavigationProps) {
           </NavItem>
         );
       })}
-      <NavItem to="/" onClick={() => handleLogout(TEXTNODES.LOG_OUT)} active={TEXTNODES.LOG_OUT === activeLink ? 'true' : 'false'}>
+      <NavItem to="/" onClick={handleLogout}>
         <RiLogoutCircleLine />
         <NavText>{TEXTNODES.LOG_OUT}</NavText>
       </NavItem>

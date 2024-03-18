@@ -1,9 +1,11 @@
 import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import TEXTNODES from '../../constants/textConstants';
 import {
   Form, FormTitle, Label, Input, InputConfirm,
 } from '../RegistrationForm/RegistrationForm.styled';
-import { ButtonBottom, TextReset } from './ResetPasswordForm.styled';
+import { TextReset } from './ResetPasswordForm.styled';
 import IResetPasswordFromProps from './ResetPasswordFrom.types';
 import ThemeContext from '../../utils/Context';
 
@@ -27,7 +29,7 @@ export default function ResetPasswordFrom({ type }: IResetPasswordFromProps) {
         <InputConfirm theme={theme === 'dark'} type="password" name="confirmPassword" id={TEXTNODES.CONFIRM_PASSWORD} placeholder="Confirm password" autoComplete="new-password" />
       </>
       )}
-      <ButtonBottom type="submit">{(type === 'reset1' || type === 'reset2') ? 'Reset' : 'Set Password'}</ButtonBottom>
+      <NavLink to={type === 'reset1' ? '/confirmReset' : '/setNewPassword'}>{(type === 'reset1' || type === 'reset2') ? 'Reset' : 'Set Password'}</NavLink>
     </Form>
   );
 }
