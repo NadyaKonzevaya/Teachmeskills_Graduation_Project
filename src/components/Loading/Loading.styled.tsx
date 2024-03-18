@@ -6,7 +6,6 @@ export const Container = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
 `;
 const spin = keyframes`
     to {

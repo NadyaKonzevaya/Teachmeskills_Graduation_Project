@@ -1,4 +1,4 @@
-export default interface IRestrictedRoute {
+export default interface IAuthRoute {
   component: React.FC;
   redirectTo: string;
   isPrivate?: boolean;

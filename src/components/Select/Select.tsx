@@ -9,7 +9,6 @@ export default function Select({ onChange }: ISelectParams) {
   const { theme } = useContext(ThemeContext);
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCountry = e.target.value;
-    // setValue(selectedCountry);
     onChange(selectedCountry);
   };
   return (
@@ -18,7 +17,6 @@ export default function Select({ onChange }: ISelectParams) {
       name={TEXTNODES.COUNTRY}
       id={TEXTNODES.COUNTRY}
       onChange={handleSelectChange}
-      // value={value}
     >
       {selectValue.map((country) => (
         <option key={country[0]} value={country[0]}>

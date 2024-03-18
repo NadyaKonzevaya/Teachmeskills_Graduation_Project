@@ -6,8 +6,7 @@ import {
   MainSharedLayout,
   SignInForm,
 } from './components';
-// import { RestrictedRoute } from './components/RestrictedRoute';
-import { AuthRoute } from './components/AuthRoute';
+import { AuthRoute } from './components/PrivateRoute';
 
 const RegistrationForm = lazy(() => import('./components/RegistrationForm/RegistrationForm'));
 const ResetPasswordForm = lazy(() => import('./components/ResetPasswordForm/ResetPasswordFrom'));

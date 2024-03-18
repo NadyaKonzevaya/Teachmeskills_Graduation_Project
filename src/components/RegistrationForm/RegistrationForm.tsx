@@ -20,7 +20,8 @@ export default function RegistrationForm() {
     const emailInput = form.elements.namedItem('email') as HTMLInputElement | null;
     const passwordInput = form.elements.namedItem('password') as HTMLInputElement | null;
     const passwordConfirmInput = form.elements.namedItem('confirmPassword') as HTMLInputElement | null;
-    if (userNameInput!.value && emailInput && passwordInput!.value === passwordConfirmInput!.value) {
+    if (userNameInput!.value
+      && emailInput && passwordInput!.value === passwordConfirmInput!.value) {
       dispatch(register({
         username: userNameInput!.value,
         email: emailInput!.value,

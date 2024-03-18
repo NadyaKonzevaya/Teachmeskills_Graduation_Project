@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const Overlay = styled.div`
-    width: 100vw;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   opacity: 1;

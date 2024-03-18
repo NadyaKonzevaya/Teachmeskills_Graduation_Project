@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
 import { IoMdClose } from 'react-icons/io';
 import IBackDropProps from '../Backdrop/Backdrop.types';
 import {
@@ -12,38 +14,31 @@ import { genres } from '../../utils/constants';
 import TEXTNODES from '../../constants/textConstants';
 import { Select } from '../Select';
 import { filterMoviesByRating } from '../../redux/movies/MoviesSlice';
-// import { IParams } from '../../redux/interfaces';
 import ThemeContext from '../../utils/Context';
+import { IGenres } from '../../redux/interfaces';
 
 export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) {
   const { theme } = useContext(ThemeContext);
-  // const genreIds = genres.map((genre) => genre[0]);
   const [filterState, setFilterState] = useState({
     params: {},
     query: '',
     years: { start: '', end: '' },
     rating: { start: '', end: '' },
-    // countryCode: '',
   });
   console.log(filterState);
-
+  console.log(isOpen);
+  
   const [sortIsChecked, setSortIsChecked] = useState('Year');
-  const [genresInFilter, setGenresInFilter] = useState<number[]>(genres);
-  // const [params, setParams] = useState<IParams>({});
-  // const [query, setQuery] = useState<string>('');
-  // const [genresInFilter, setGenresInFilter] = useState<string[]>(genresValue);
-  // const [years, setYears] = useState({ start: '', end: '' });
-  // const [rating, setRating] = useState({ start: '', end: '' });
-  // const [country, setCountry] = useState('Select country');
+  const [genresInFilter, setGenresInFilter] = useState<IGenres>(genres);
   const dispatch = useAppDispatch();
 
-  const createYearQuery = () => {
+  const createYearQuery = useCallback(() => {
     const yearsQuery = [];
     for (let i = Number(filterState.years.start); i <= Number(filterState.years.end); i += 1) {
       yearsQuery.push(i);
     }
     return yearsQuery.join('|');
-  };
+  }, [filterState.years.end, filterState.years.start]);
 
   useEffect(() => {
     const yearsQueryToString = createYearQuery();
@@ -51,7 +46,7 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
       return;
     }
     setFilterState({ ...filterState, params: { ...filterState.params, year: yearsQueryToString } });
-  }, [filterState.years]);
+  }, [createYearQuery, filterState.years]);
 
   const setCheckedInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSortIsChecked(e.target.value);
@@ -69,7 +64,7 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
     setFilterState({ ...filterState, query: e.target.value });
   };
 
-  const closeGenre = (genre) => {
+  const closeGenre = (genre: [number, string]) => {
     const genresUpdated = genresInFilter.filter(
       (genreInFilter) => genreInFilter[0] !== genre[0],
     );
@@ -97,7 +92,7 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
     }
   };
 
-  const setCountryQuery = (country) => {
+  const setCountryQuery = (country: string) => {
     setFilterState({
       ...filterState, params: { ...filterState.params, country },
     });
@@ -109,17 +104,9 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
       query: '',
       years: { start: '', end: '' },
       rating: { start: '', end: '' },
-      country: 'Select country',
     });
     setSortIsChecked('Year');
     setGenresInFilter(genres);
-    // setParams({});
-    // setYears({ start: '', end: '' });
-    // setSortIsChecked('Year');
-    // setQuery('');
-    // setGenresInFilter(genresValue);
-    // setCountry('Select country');
-    // setRating({ start: '', end: '' });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -147,7 +134,6 @@ export default function Filters({ isOpen, handleIsOpen, type }: IBackDropProps) 
           <Wrap>
             <LabelTitle theme={theme === 'dark'}>{TEXTNODES.SORT_BY}</LabelTitle>
             <RadioLabelLeft theme={theme === 'dark'} htmlFor={TEXTNODES.RATING} checked={sortIsChecked === 'Rating'}>{TEXTNODES.RATING}</RadioLabelLeft>
-            {/* {console.log(filterState.sortIsChecked === 'Rating')} */}
             <RadioInput theme={theme === 'dark'} type="radio" name="sorting" value={TEXTNODES.RATING} id={TEXTNODES.RATING} onChange={setCheckedInput} />
             <RadioLabelRight theme={theme === 'dark'} htmlFor={TEXTNODES.YEAR} checked={sortIsChecked === 'Year'}>{TEXTNODES.YEAR}</RadioLabelRight>
             <RadioInput theme={theme === 'dark'} type="radio" name="sorting" value={TEXTNODES.YEAR} id={TEXTNODES.YEAR} onChange={setCheckedInput} />

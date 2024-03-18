@@ -6,7 +6,7 @@ import { getMovieDetailsSelector } from '../../redux/selectors';
 import { IMAGE_BASE_URL } from '../../utils/constants';
 import { BookmarkElement } from '../Navigation/Navigation.styled';
 import {
-  ImageWrap, LeftSide, ReactionWrap, ReactionBtn, ShareElement, RightSide, Title, Rating,
+  ImageWrap, LeftSide, ReactionWrap, ReactionBtn, ShareElement, Title, Rating,
   ImdbRating, RatingWrap, Text, PropertyName, Value, PropertyWrap, Image, MovieImage,
 } from './MovieDetails.styled';
 import { fetchCastMovieDetails, fetchMovieDetails, fetchRecommendsMovieDetails } from '../../redux/movies/operations';
@@ -22,8 +22,11 @@ export default function MovieDetails() {
   const dispatch = useAppDispatch();
   const movie = useAppSelector(getMovieDetailsSelector);
   const rating = useMemo(() => (movie ? Math.round(movie.vote_average * 10) / 10 : 0), [movie]);
-  const formatedBudget = useMemo(() => (movie ? movie.budget.toLocaleString() : 0), [movie]);
+  const formatedBudget = useMemo(() => (movie ? movie.budget!.toLocaleString() : 0), [movie]);
   const { movieId } = useParams();
+
+  console.log(movie);
+  
 
   useEffect(() => {
     if (!movie || movie.id !== Number(movieId)) {
@@ -35,9 +38,14 @@ export default function MovieDetails() {
     }
   }, [dispatch, movie, movieId]);
 
-  const countries = useMemo(() => getNamesOfMovieProperties(movie, movie.production_countries), []);
+  const countries = useMemo(() => getNamesOfMovieProperties(
+    movie!,
+    movie!.production_countries
+  ), [movie]);
 
-  const productions = useMemo(() => getNamesOfMovieProperties(movie, movie.production_companies), []);
+  const productions = useMemo(() => getNamesOfMovieProperties(
+    movie!,
+    movie!.production_companies), [movie]);
 
   const mainActors = useMemo(() => {
     const list = movie ? movie.actors : null;
@@ -49,7 +57,7 @@ export default function MovieDetails() {
   };
 
   return (
-    movie && !!movie.actors && !!movie.recommendations && (
+    movie && !!movie.actors && !!movie.recommendations && movie.genres && (
       <>
         <LeftSide>
           <ImageWrap>
@@ -64,7 +72,7 @@ export default function MovieDetails() {
             </ReactionBtn>
           </ReactionWrap>
         </LeftSide>
-        <RightSide>
+        <div>
           <GenreList>
             {' '}
             {movie.genres.map((genre) => (
@@ -119,7 +127,7 @@ export default function MovieDetails() {
             <PropertyName theme={theme === 'dark'}>{TEXTNODES.ACTORS}</PropertyName>
             <Value theme={theme === 'dark'}>{mainActors}</Value>
           </PropertyWrap>
-        </RightSide>
+        </div>
         <Recommendations />
       </>
     )

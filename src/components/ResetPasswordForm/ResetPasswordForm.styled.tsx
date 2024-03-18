@@ -3,7 +3,7 @@ import { Button, Text } from '../RegistrationForm/RegistrationForm.styled';
 import colors from '../../constants/colorConstants';
 
 export const ButtonBottom = styled(Button)`
-    margin-bottom: 0;
+  margin-bottom: 0;
 `;
 
 export const TextReset = styled(Text)`

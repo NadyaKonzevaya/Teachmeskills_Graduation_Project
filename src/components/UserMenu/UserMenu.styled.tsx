@@ -14,7 +14,7 @@ export const UserMenuWrap = styled.div`
 `;
 
 export const Letters = styled.p`
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 56px;
@@ -27,28 +27,27 @@ export const Letters = styled.p`
 `;
 
 export const Name = styled.p`
-    font-weight: 600;
-    margin-left: 20px;
-    margin-right: 51px;
-    color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+  font-weight: 600;
+  margin-left: 20px;
+  margin-right: 51px;
+  color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
 `;
 
 export const MdKeyboardArrowDownElement = styled(MdKeyboardArrowDown)`
-    width: 20px;
-    height: 20px;
-    /* height: 10px; */
-    fill: ${colors.contextualColors.light};
+  width: 20px;
+  height: 20px;
+  fill: ${colors.contextualColors.light};
 `;
 
 export const Button = styled.button`
-display: none;
-@media screen and (min-width: 1440px) {
-  display: block;
-  background-color: transparent;
-  outline: 1px solid transparent;
-  border: none;
-  &:focus {
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: block;
+    background-color: transparent;
     outline: 1px solid transparent;
+    border: none;
+    &:focus {
+      outline: 1px solid transparent;
+    }
   }
-}
 `;

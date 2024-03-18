@@ -8,9 +8,7 @@ export const Form = styled.form`
   margin-top: 48px;
   margin-bottom: 48px;
   padding: 24px;
-  
   width: 100%;
-  
   background-color: ${({ theme }) => (theme ? `${colors.backgroundColors.dark}` : `${colors.contextualColors.white}`)};
   border-radius: 10px;
 
@@ -19,11 +17,15 @@ export const Form = styled.form`
     padding: 40px;
   }
 `;
+
 export const FormTitle = styled.h1`
-font-size: 20px;
-/* font-size: 24px; */
+  font-size: 20px;
   margin-bottom: 40px;
   color: ${({ theme }) => theme && `${colors.contextualColors.white}`};
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const Label = styled.label`
@@ -33,7 +35,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-font-size: 16px;
+  font-size: 16px;
   height: 56px;
   padding-left: 20px;
   padding-right: 20px;
@@ -69,9 +71,12 @@ export const Button = styled.button`
 `;
 
 export const TextBottom = styled.p`
-font-size: 14px;
-/* font-size: 16px; */
+  font-size: 14px;
   margin: 0;
   color:${colors.systemColors.secondary};
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 `;

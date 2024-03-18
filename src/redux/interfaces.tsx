@@ -46,22 +46,26 @@ export interface SignInPayload {
   password: string,
 }
 
+export interface IProduction {
+  id: number, logo_path: string | null, name: string, origin_country: string,
+}
 export interface IMovie {
   id: number,
   poster_path: string,
   title: string,
-  genre_ids: number[],
+  genre_ids?: [number, string][],
   vote_average: number,
   overview?: string,
   actors?: string[],
   recommendations?: IMovie[],
   isFavorite?: boolean,
-  genres?: [][],
+  genres?: { id: number, name: string }[],
   runtime?: number,
   release_date?: string,
   budget?: number,
-  production_countries?: { name: string }[],
-  production_companies?: { name: string }[],
+  production_countries?: IProduction[],
+  production_companies?: IProduction[],
+  genreNames?: [number, string][],
 }
 
 export interface IActor {
@@ -90,7 +94,4 @@ export interface IParams {
   country?: string,
 }
 
-export interface IThemeContext {
-  theme: THEME;
-  setTheme: (theme: THEME) => void;
-}
+export type IGenres = [number, string][];

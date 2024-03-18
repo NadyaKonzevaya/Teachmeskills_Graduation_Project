@@ -4,4 +4,4 @@ import RootComponent from './components/RootComponent';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<RootComponent />);
 
-// basename="/Teachmeskills_Graduation_Project"
+

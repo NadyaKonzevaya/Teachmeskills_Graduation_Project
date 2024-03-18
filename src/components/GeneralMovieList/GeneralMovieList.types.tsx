@@ -1,4 +1,4 @@
-import { IMovie } from '../../redux/movies/MoviesSlice';
+import { IMovie } from '../../redux/interfaces';
 
 export default interface IGeneralMovieListProps {
   movieList: IMovie[];

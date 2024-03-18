@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { IMovie } from '../../redux/interfaces';
-import GeneralMovieList from '../GeneralMovieList/GeneralMovieList';
+import { GeneralMovieList } from '../GeneralMovieList';
 import { fetchTrends } from '../../redux/movies/operations';
 import { MainWrapper } from '../MainMovies/MainMovieList.styled';
 import { genres } from '../../utils/constants';

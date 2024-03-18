@@ -7,7 +7,7 @@ import { genres } from '../../utils/constants';
 import { Loading } from '../Loading';
 import { getMoviesWithUpdatedGenres } from '../../utils/helperFunctions';
 import TEXTNODES from '../../constants/textConstants';
-import GeneralMovieList from '../GeneralMovieList/GeneralMovieList';
+import { GeneralMovieList } from '../GeneralMovieList';
 import ThemeContext from '../../utils/Context';
 
 export default function MainMovieList() {

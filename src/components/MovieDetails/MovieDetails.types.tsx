@@ -1,3 +1,3 @@
 export default interface ReactionBtnProps {
-  isFavorite: boolean;
+  isFavorite?: boolean | undefined;
 }

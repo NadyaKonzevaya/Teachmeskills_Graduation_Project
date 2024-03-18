@@ -1,18 +1,19 @@
 import { useCallback, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { IoReorderThreeOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import logoBlack from '../../images/logo_black.png';
 import logo from '../../images/logo.png';
 import {
-  HeaderWrapper, SearchBar, BsFilterRightElement, SearchBarWrap, BurgerMenu, Button, Logo, SearchBarWrapMobile,
+  HeaderWrapper, SearchBar, BsFilterRightElement, SearchBarWrap, BurgerMenu, Button, Logo,
+  SearchBarWrapMobile,
 } from './Header.styled';
 import { UserMenu } from '../UserMenu';
 import ThemeContext from '../../utils/Context';
 import { fetchMoviesByQuery } from '../../redux/movies/operations';
 import { Navigation } from '../Navigation';
 import Backdrop from '../Backdrop/Backdrop';
+import { useAppDispatch } from '../../redux/hooks';
 
 export default function Header() {
   const [queryString, setQueryString] = useState('');
@@ -20,9 +21,9 @@ export default function Header() {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const handleChange = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = (e.target as HTMLInputElement).value;
     setQueryString(inputValue);
     dispatch(fetchMoviesByQuery(queryString));

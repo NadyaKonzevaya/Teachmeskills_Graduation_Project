@@ -3,8 +3,6 @@ import axios from 'axios';
 import { BASE_URL, API_KEY } from '../../utils/constants';
 import { IActor, IMovie, IParams } from '../interfaces';
 
-// API_KEY = process.env.API_KEY
-
 export const fetchMovies = createAsyncThunk<IMovie[], void, { rejectValue: string }>('movies/fetchMovies', async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(`${BASE_URL}/3/trending/movie/week?api_key=${API_KEY}`);

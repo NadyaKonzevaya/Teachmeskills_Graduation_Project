@@ -1,13 +1,14 @@
 import {
-  BookmarkElement, HomeElement, SettingsElement, TrendsElement, LogOutElement,
+  BookmarkElement, HomeElement, SettingsElement, TrendsElement,
 } from '../components/Navigation/Navigation.styled';
 import TEXTNODES from '../constants/textConstants';
+import { IGenres } from '../redux/interfaces';
 
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 export const BASE_URL = 'https://api.themoviedb.org';
 export const API_KEY = '35b67d916044ed61f84d01dde3676d84';
 
-export const genres = [
+export const genres: IGenres = [
   [28, 'Action'],
   [37, 'Western'],
   [10752, 'War'],
@@ -53,5 +54,4 @@ export const NavItems = [
   [TrendsElement, TEXTNODES.TRENDS, '/movies/trends'],
   [BookmarkElement, TEXTNODES.FAVORITES, '/movies/favorites'],
   [SettingsElement, TEXTNODES.SETTINGS, '/movies/settings'],
-  // [LogOutElement, TEXTNODES.LOG_OUT, '/'],
 ];

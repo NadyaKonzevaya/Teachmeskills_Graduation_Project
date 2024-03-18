@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import {
   Label, Title, Wrapper, Input, Form, SettingsWrapper, LabelBottom, SwitchCheck, SwitchLabel,
   Switch, SwitchSlider, Text, Button, ButtonWrap, WrapperTheme,
@@ -15,6 +14,11 @@ export default function Settings() {
 
   const toggleCheck = () => {
     setChecked(!checked);
+    if (checked) {
+      localStorage.setItem('theme', JSON.stringify('light'));
+    } else {
+      localStorage.setItem('theme', JSON.stringify('dark'));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,7 +44,6 @@ export default function Settings() {
             {TEXTNODES.EMAIL}
             <Input theme={theme === 'dark'} id={TEXTNODES.EMAIL} type="email" name="email" autoComplete={TEXTNODES.EMAIL} />
           </Label>
-
         </Wrapper>
         <Title theme={theme === 'dark'}>{TEXTNODES.PASSWORD}</Title>
         <Wrapper theme={theme === 'dark'}>

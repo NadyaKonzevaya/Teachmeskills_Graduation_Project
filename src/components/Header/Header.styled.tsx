@@ -4,42 +4,37 @@ import colors from '../../constants/colorConstants';
 import IBurgerMenuProps from './Header.types';
 
 export const HeaderWrapper = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-top: 32px;
+  padding-bottom: 40px;
+
+  @media screen and (min-width: 550px) {
+    flex-wrap: nowrap;
+    padding-top: 40px;
+  padding-bottom: 48px;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    width: 928px;
     margin: 0 auto;
+  }
+  
+  @media screen and (min-width: 1440px) {
     width: 100%;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
+    grid-area: 'header';
+    display: grid;
+    gap: 0;
+    grid-auto-flow: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    /* padding: 32px 24px 40px 24px; */
-    padding-top: 32px;
-    padding-bottom: 40px;
-
-    @media screen and (min-width: 550px) {
-      flex-wrap: nowrap;
-      padding-top: 40px;
-    padding-bottom: 48px;
-    }
-    @media screen and (min-width: 1024px) {
-        width: 928px;
-        margin: 0 auto;
-    }
-    @media screen and (min-width: 1440px) {
-      width: 100%;
-      grid-area: 'header';
-      display: grid;
-      gap: 0;
-      grid-auto-flow: column;
-      align-items: center;
-      grid-template: 1fr / minmax(306px, auto) 1fr minmax(206px, auto);
-      /* grid-template: 1fr / minmax(auto, 246px) 1fr minmax(auto, 305px); */
-    } 
-
-
-    
-    
-   
+    grid-template: 1fr / minmax(306px, auto) 1fr minmax(206px, auto);
+  } 
 `;
 
 export const Logo = styled.img`
@@ -49,8 +44,8 @@ export const Logo = styled.img`
 `;
 
 export const BurgerMenu = styled.p<IBurgerMenuProps>`
-padding: 15px 18px;
-margin: 0;
+  padding: 15px 18px;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,9 +57,11 @@ margin: 0;
   border-radius: 10px;
   color: ${colors.contextualColors.white};
   cursor: pointer;
+  
   @media screen and (min-width: 550px) {
     margin-right: ${({ isOpen }) => isOpen && '248px'};
   }
+  
   @media screen and (min-width: 1440px) {
     display: none;
   }
@@ -85,36 +82,36 @@ export const SearchBarWrapMobile = styled.div`
   position: relative;
   height: 56px;
   width: 100%;
+  
   @media screen and (min-width: 550px) {
     display: none;
   }
 `;
 
 export const SearchBar = styled.input`
-box-sizing: border-box;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 56px;
-    width: 100%;
-    background-color: ${({ theme }) => theme && `${colors.backgroundColors.graphite}`};
-    border:  ${({ theme }) => theme && `2px solid ${colors.contextualColors.light}`};
-    border-radius: 10px;
-    font-size: 16px;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 56px;
+  width: 100%;
+  background-color: ${({ theme }) => theme && `${colors.backgroundColors.graphite}`};
+  border:  ${({ theme }) => theme && `2px solid ${colors.contextualColors.light}`};
+  border-radius: 10px;
+  font-size: 16px;
 `;
 
 export const BsFilterRightElement = styled(BsFilterRight)`
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 24px;
-    height: 24px;
-    fill: ${colors.contextualColors.light};
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  fill: ${colors.contextualColors.light};
 `;
 
 export const Button = styled.button`
-/* display: none; */
   background-color: transparent;
- outline: 1px solid transparent;
+  outline: 1px solid transparent;
   border: none;
   &:focus {
     outline: 1px solid transparent;

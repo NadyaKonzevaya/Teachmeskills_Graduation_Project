@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
-  useContext, useEffect, useLayoutEffect, useMemo, useRef, useState,
+  useContext, useEffect, useMemo, useRef, useState,
 } from 'react';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css';
@@ -23,8 +23,6 @@ export default function Recommendations() {
   const swiperContainerRef = useRef(null);
   const recommendations = useAppSelector(getRecommendationsSelector);
   const recommendationsUpdated = useMemo(() => getMoviesWithUpdatedGenres(recommendations, genres), [recommendations]);
-
-  console.log(slidesPerView);
 
   useEffect(() => {
     const swiperContainer = swiperContainerRef.current;
@@ -67,10 +65,8 @@ export default function Recommendations() {
       <Swiper
         modules={[Navigation]}
         style={{ height: '437px' }}
-        // style={{ height: '400px' }}
         spaceBetween={40}
         slidesPerView={slidesPerView}
-        // slidesPerView={4}
         navigation={{
           prevEl: '.swiper-button-prev',
           nextEl: '.swiper-button-next',

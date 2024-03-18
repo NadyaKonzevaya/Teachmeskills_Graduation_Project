@@ -8,10 +8,12 @@ import '../index.css';
 import ThemeContext, { THEME } from '../utils/Context';
 
 export default function RootComponent() {
-  const [theme, setTheme] = useState<THEME>('light');
+  const savedTheme = JSON.parse(localStorage.getItem('theme'));
+  const [theme, setTheme] = useState<THEME>(savedTheme);
+
   return (
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename="/Teachmeskills_Graduation_Project">
         <Provider store={store}>
           <PersistGate persistor={persistor} loading={null}>
             <ThemeContext.Provider value={useMemo(() => ({ theme, setTheme }), [theme, setTheme])}>

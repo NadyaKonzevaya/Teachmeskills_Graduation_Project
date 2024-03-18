@@ -3,7 +3,7 @@ export interface INavItemProps {
 }
 
 export interface INavigationProps {
-  type: string;
-  theme: boolean;
-  toogleOpen: (isOpen: boolean) => void;
+  type?: string;
+  theme?: boolean;
+  toggleOpen?: (isOpen: boolean) => void;
 }

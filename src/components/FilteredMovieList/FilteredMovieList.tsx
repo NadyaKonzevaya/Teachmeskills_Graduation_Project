@@ -18,7 +18,7 @@ export default function FilteredMovieList() {
   const moviesUpdated = useMemo(() => getMoviesWithUpdatedGenres(movies, genres), [movies]);
 
   const handleFetchMoreMovies = () => {
-    dispatch(fetchMoreMovies({ page })).then(setPage(page + 1));
+    dispatch(fetchMoreMovies({ page })).then(() => setPage(page + 1));
   };
 
   return (

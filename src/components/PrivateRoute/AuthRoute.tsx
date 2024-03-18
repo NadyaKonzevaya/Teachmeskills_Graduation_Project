@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks';
 import { getIsLoggedInSelector } from '../../redux/selectors';
-import IRestrictedRoute from './AuthRoute.types';
+import IAuthRoute from './AuthRoute.types';
 
-export default function AuthRoute({ component: Component, redirectTo = '/', isPrivate = false }: IRestrictedRoute) {
+export default function AuthRoute({ component: Component, redirectTo = '/', isPrivate = false }: IAuthRoute) {
   const isLoggedIn = useAppSelector(getIsLoggedInSelector);
 
   let content;

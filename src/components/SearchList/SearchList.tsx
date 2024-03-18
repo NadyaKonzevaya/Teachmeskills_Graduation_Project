@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { MainWrapper } from '../MainMovies/MainMovieList.styled';
 import { useAppSelector } from '../../redux/hooks';
 import { getMoviesSelector } from '../../redux/selectors';
-import GeneralMovieList from '../GeneralMovieList/GeneralMovieList';
+import { GeneralMovieList } from '../GeneralMovieList';
 import { genres } from '../../utils/constants';
 import { getMoviesWithUpdatedGenres } from '../../utils/helperFunctions';
 

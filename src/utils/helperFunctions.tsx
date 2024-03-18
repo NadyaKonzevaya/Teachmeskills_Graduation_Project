@@ -1,10 +1,12 @@
 import { format, parseISO } from 'date-fns';
-import { IMovie } from '../redux/interfaces';
+import { IMovie, IProduction } from '../redux/interfaces';
 
 export function formateDate(date: string) {
+  if (!date) {
+    return;
+  }
   const parsedDate = parseISO(date);
-  const formattedDate = format(parsedDate, 'dd MMMM yyyy');
-  return formattedDate;
+  return format(parsedDate, 'dd MMMM yyyy');
 }
 
 const getFilteredGenres = (allGenres: [number, string][], genreIds: number[]) => allGenres
@@ -18,7 +20,7 @@ export const getMoviesWithUpdatedGenres = (
   return { ...movie, genre_ids: genreNames };
 });
 
-export const getNamesOfMovieProperties = (movie: IMovie, propertyName: { name: string }[]) => {
+export const getNamesOfMovieProperties = (movie: IMovie, propertyName: IProduction[]) => {
   const list = movie ? propertyName.map((property) => property.name) : null;
   if (list?.length === 1) {
     return list;
