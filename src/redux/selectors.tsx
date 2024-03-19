@@ -8,4 +8,6 @@ export const getRecommendationsSelector = (state: IState) => state
   .movies.currentMovie?.recommendations;
 
 export const getIsLoggedInSelector = (state: IState) => state.auth.isLoggedIn;
-export const getUserSelector = (state: IState) => state.auth.user?.username;
+export const getUserSelector = (state: IState) => state.auth.user;
+export const getEmailForReset = (state: IState) => state.auth.emailForReset;
+export const getTokensSelector = (state: IState) => state.auth.tokens;

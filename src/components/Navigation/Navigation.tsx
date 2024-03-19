@@ -13,8 +13,6 @@ export default function Navigation({ type, toggleOpen }: INavigationProps) {
   const dispatch = useAppDispatch();
   const { theme } = useContext(ThemeContext);
 
-  console.log(activeLink);
-
   const handleClick = (link) => {
     console.log(link);
     setActiveLink(link);

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn } from './operations';
+import { register, logIn, resetPassword, resetPasswordConform } from './operations';
 import { IAuthState } from '../interfaces';
 
 const initialState: IAuthState = {
@@ -8,6 +8,7 @@ const initialState: IAuthState = {
   tokens: null,
   isRefreshing: false,
   error: null,
+  emailForReset: '',
 };
 
 export const authSlice = createSlice({
@@ -18,7 +19,6 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     setLogOut: (state) => {
-      state.user = null;
       state.isLoggedIn = false;
       state.tokens = false;
       state.isRefreshing = false;
@@ -38,6 +38,12 @@ export const authSlice = createSlice({
     .addCase(logIn.fulfilled, (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload;
+    })
+    .addCase(resetPassword.fulfilled, (state, action) => {
+      state.emailForReset = action.payload;
+    })
+    .addCase(resetPasswordConform.fulfilled, (state) => {
+      state.isLoggedIn = true;
     }),
 });
 

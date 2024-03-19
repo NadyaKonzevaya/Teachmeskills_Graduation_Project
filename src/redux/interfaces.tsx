@@ -1,4 +1,4 @@
-import { THEME } from "../utils/Context";
+import { THEME } from '../utils/Context';
 
 export interface IAuthState {
   isLoggedIn?: boolean;
@@ -7,6 +7,7 @@ export interface IAuthState {
   tokens: { access: string, refresh: string } | null;
   isRefreshing: boolean;
   error: string | null;
+  emailForReset: string;
 }
 export interface IMoviesState {
   items: IMovie[];
@@ -95,3 +96,9 @@ export interface IParams {
 }
 
 export type IGenres = [number, string][];
+
+export interface IResetPasswordParams {
+  'uid': string,
+  'token': string,
+  'new_password': string
+}
