@@ -2,11 +2,6 @@ import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import TEXTNODES from '../../constants/textConstants';
-// import {
-//   Form, FormTitle, Label, Input, InputConfirm,
-// } from '../RegistrationForm/RegistrationForm.styled';
-// import { TextReset } from './ResetPasswordForm.styled';
-// import IResetPasswordFromProps from './ResetPasswordFrom.types';
 import ThemeContext from '../../utils/Context';
 import {
   Form, FormTitle, Input, InputConfirm, Label,

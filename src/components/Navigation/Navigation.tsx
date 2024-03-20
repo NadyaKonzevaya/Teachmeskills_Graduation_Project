@@ -16,11 +16,12 @@ export default function Navigation({ type, toggleOpen }: INavigationProps) {
   const handleClick = (link) => {
     console.log(link);
     setActiveLink(link);
-    if (type === 'mobileMenu') { toggleOpen(false) };
+    if (type === 'mobileMenu') {
+      toggleOpen(false);
+    }
   };
 
   const handleLogout = () => {
-    // setActiveLink(link);
     dispatch(setLogOut());
   };
 
